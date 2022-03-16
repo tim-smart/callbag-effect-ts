@@ -1,0 +1,14 @@
+{
+  "name": "callbag-effect-ts",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "devDependencies": {
+    "callbag": "^1.5.0",
+    "typescript": "^4.6.2"
+  },
+  "dependencies": {
+    "@effect-ts/core": "^0.58.0",
+    "callbag-basics": "^4.0.0"
+  }
+}
