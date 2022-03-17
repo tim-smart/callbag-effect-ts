@@ -48,6 +48,7 @@ export const unwrapManaged =
           },
         )
       } else if (signal === Signal.END) {
+        if (endCalled) return
         endCalled = true
         if (cancel) r.run(cancel)
       }
