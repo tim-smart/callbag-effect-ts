@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.7.2](https://github.com/tim-smart/callbag-effect-ts/compare/callbag-effect-ts@0.7.1...callbag-effect-ts@0.7.2) (2022-03-17)
+
+
+### Bug Fixes
+
+* allow boolean predicates in filter ([f94d1ab](https://github.com/tim-smart/callbag-effect-ts/commit/f94d1abff8c23a92e24ce10f98a902bfe3f1f85e))
+
+
+
+
+
 ## [0.7.1](https://github.com/tim-smart/callbag-effect-ts/compare/callbag-effect-ts@0.7.0...callbag-effect-ts@0.7.1) (2022-03-17)
 
 **Note:** Version bump only for package callbag-effect-ts
