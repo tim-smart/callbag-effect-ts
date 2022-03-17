@@ -4,7 +4,8 @@
   "main": "mod.js",
   "license": "MIT",
   "scripts": {
-    "prepare": "tsc"
+    "prepare": "yarn clean && tsc",
+    "clean": "git clean -fxd -e node_modules"
   },
   "files": [
     "**/*.js",
