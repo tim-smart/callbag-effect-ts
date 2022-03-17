@@ -1,31 +1,36 @@
 import * as T from "@effect-ts/core/Effect"
-import { EffectSink, EffectSource, Signal, Sink, Talkback } from "../types"
+import { noop } from "../Sink"
+import { EffectSink, EffectSource, Signal, Talkback } from "../types"
 
-export const run = <R, R1, E, A>(
-  self: EffectSource<R, E, A>,
-  sink: EffectSink<R1, E, A>,
-): T.Effect<R, E, void> =>
-  T.withRuntimeM<R, R, E, void>((r) =>
-    T.effectAsyncInterrupt<unknown, E, void>((cb) => {
+export const run_ = <R, R1, EI, EO, A>(
+  self: EffectSource<R, EI, A>,
+  sink: EffectSink<R1, EI, EO, A>,
+): T.Effect<R & R1, EI | EO, void> =>
+  T.withRuntimeM<R & R1, R & R1, EI | EO, void>((r) =>
+    T.effectAsyncInterrupt<unknown, EI | EO, void>((cb) => {
+      const sinkWithEnv = sink(r)
+
       let aborted = false
       let talkback: Talkback
 
       self(r)(Signal.START, (t, d) => {
         if (aborted) return
 
-        switch (t) {
-          case Signal.START:
-            talkback = d
-            talkback(Signal.DATA)
-            break
+        if (t === Signal.START) {
+          talkback = d
 
-          case Signal.DATA:
-            talkback(Signal.DATA)
-            break
+          sinkWithEnv(Signal.START, (signal, err) => {
+            talkback(signal)
 
-          case Signal.END:
-            cb(d ? T.uncause(T.succeed(d)) : T.unit)
-            break
+            if (err) {
+              aborted = true
+              cb(T.halt(err))
+            }
+          })
+        } else if (t === Signal.DATA) {
+          sinkWithEnv(Signal.DATA, d)
+        } else if (t === Signal.END) {
+          cb(d ? T.halt(d) : T.unit)
         }
       })
 
@@ -35,3 +40,11 @@ export const run = <R, R1, E, A>(
       })
     }),
   )
+
+export const run =
+  <R1, EI, EO, A>(sink: EffectSink<R1, EI, EO, A>) =>
+  <R>(self: EffectSource<R, EI, A>) =>
+    run_(self, sink)
+
+export const runDrain = <R, E>(self: EffectSource<R, E, unknown>) =>
+  run_(self, noop)

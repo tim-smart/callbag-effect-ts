@@ -6,8 +6,8 @@ export const switchMap =
   <R, E>(fa: EffectSource<R, E, A>): EffectSource<R & R1, E | E1, B> =>
   (r) =>
   (_, sink) => {
-    let talkback: Talkback
-    let innerTalkback: Talkback | undefined
+    let talkback: Talkback<any>
+    let innerTalkback: Talkback<any> | undefined
     let waitingForData = false
     let sourceEnded = false
 

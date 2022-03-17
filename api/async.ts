@@ -105,7 +105,7 @@ const asyncImpl =
         ),
       )
 
-    const talkback: Talkback = (t) => {
+    const talkback: Talkback<any> = (t) => {
       switch (t) {
         case Signal.DATA:
           pump()

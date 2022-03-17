@@ -1,4 +1,4 @@
-import { Signal, Source, Talkback } from "../../types"
+import { Signal, Source, Talkback } from "strict-callbag"
 
 const makeLB = <E, A>(
   onData: (a: A) => void,
@@ -13,12 +13,15 @@ const makeLB = <E, A>(
   const talkbacks: Talkback[] = []
   let pullIndex = 0
 
-  const add = (source: Source<E, A>) => {
+  const add = (source: Source<A, E>) => {
     size++
 
     let localTalkback: Talkback
     source(Signal.START, (signal, data) => {
-      if (aborted) return
+      if (aborted) {
+        if (signal === Signal.START) data(Signal.END)
+        return
+      }
 
       if (signal === Signal.START) {
         localTalkback = data
@@ -105,10 +108,10 @@ const makeLB = <E, A>(
 
 export const chainPar_ =
   <E, E1, A, B>(
-    self: Source<E, A>,
-    fab: (a: A) => Source<E1, B>,
+    self: Source<A, E>,
+    fab: (a: A) => Source<B, E1>,
     maxInnerCount = Infinity,
-  ): Source<E | E1, B> =>
+  ): Source<B, E | E1> =>
   (_, sink) => {
     const lb = makeLB<E | E1, B>(
       (a) => sink(Signal.DATA, a),

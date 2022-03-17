@@ -7,8 +7,8 @@ export const catchError_ =
   ): EffectSource<R & R1, E | E1, A | B> =>
   (r) =>
   (_, sink) => {
-    let innerTalkback: Talkback
-    const talkback: Talkback = (signal) => innerTalkback?.(signal)
+    let innerTalkback: Talkback<any>
+    const talkback: Talkback<any> = (signal) => innerTalkback?.(signal)
 
     const replaceSource = (
       fa: EffectSource<R & R1, E | E1, A | B>,

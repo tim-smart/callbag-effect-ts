@@ -3,7 +3,7 @@ import * as M from "@effect-ts/core/Effect/Managed"
 import * as T from "@effect-ts/core/Effect"
 import { pipe } from "@effect-ts/core/Function"
 import { runMain } from "@effect-ts/node/Runtime"
-import * as CB from "../mod"
+import * as CB from "../"
 import { tag } from "@effect-ts/core/Has"
 
 // Some services
@@ -56,7 +56,7 @@ const program = pipe(
   CB.tapEffect((i) => log("got", i)),
   CB.drain,
   CB.tapEffect((i) => log("got", i)),
-  CB.run,
+  CB.runDrain,
 )
 
 pipe(

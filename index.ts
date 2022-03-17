@@ -25,3 +25,5 @@ export * from "./api/tap"
 export * from "./api/tapEffect"
 export * from "./api/unwrap"
 export * from "./api/unwrapManaged"
+
+export * as Sink from "./Sink"
