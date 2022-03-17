@@ -7,7 +7,7 @@ import { catchError_ } from "./catchError"
 import { tapEffect } from "./tapEffect"
 import { unwrap } from "./unwrap"
 
-export const retry = <R, E, A, Z>(
+export const retry_ = <R, E, A, Z>(
   self: EffectSource<R, E, A>,
   schedule: SC.Schedule<R, E, Z>,
 ): EffectSource<R & HasClock, E, A> =>
@@ -35,3 +35,8 @@ export const retry = <R, E, A, Z>(
     }),
     unwrap,
   )
+
+export const retry =
+  <R, E, Z>(schedule: SC.Schedule<R, E, Z>) =>
+  <A>(self: EffectSource<R, E, A>): EffectSource<R & HasClock, E, A> =>
+    retry_(self, schedule)
