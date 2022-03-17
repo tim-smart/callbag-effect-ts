@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.6.0](https://github.com/tim-smart/callbag-effect-ts/compare/callbag-effect-ts@0.5.0...callbag-effect-ts@0.6.0) (2022-03-17)
+
+
+### Features
+
+* tapError, alt ([86cce8a](https://github.com/tim-smart/callbag-effect-ts/commit/86cce8a4a2bbff153e4e15222fe895ebdf5b2add))
+
+
+
+
+
 # [0.5.0](https://github.com/tim-smart/callbag-effect-ts/compare/callbag-effect-ts@0.4.2...callbag-effect-ts@0.5.0) (2022-03-17)
 
 
