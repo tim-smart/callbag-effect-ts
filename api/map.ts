@@ -10,6 +10,6 @@ export const map_ =
     cbMap(fab)(self(r) as any) as any
 
 export const map =
-  <R, E, A, B>(fab: (a: A) => B) =>
-  (source: EffectSource<R, E, A>) =>
+  <A, B>(fab: (a: A) => B) =>
+  <R, E>(source: EffectSource<R, E, A>) =>
     map_(source, fab)

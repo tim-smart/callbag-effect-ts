@@ -10,6 +10,6 @@ export const mapEffect_ = <R, R1, E, E1, A, B>(
 ): EffectSource<R & R1, E | E1, B> => pipe(chain_(self, flow(fab, fromEffect)))
 
 export const mapEffect =
-  <R, R1, E, E1, A, B>(fab: (a: A) => T.Effect<R1, E1, B>) =>
-  (self: EffectSource<R, E, A>) =>
+  <R1, E1, A, B>(fab: (a: A) => T.Effect<R1, E1, B>) =>
+  <R, E>(self: EffectSource<R, E, A>) =>
     mapEffect_(self, fab)

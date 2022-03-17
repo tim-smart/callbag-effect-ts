@@ -5,10 +5,10 @@ import { EffectSource, Signal } from "../types"
 import * as Runner from "./_internal/effectRunner"
 
 export const fromQueue =
-  <R, A>(queue: Q.Dequeue<A>): EffectSource<R, never, A> =>
+  <R, E, A>(queue: Q.XDequeue<R, E, A>): EffectSource<R, E, A> =>
   (r) =>
   (_, sink) => {
-    const runner = Runner.make<R, never>(r, (cause) => {
+    const runner = Runner.make<R, E>(r, (cause) => {
       runner.abort()
       sink(Signal.END, cause._tag !== "Interrupt" ? cause : undefined)
     })

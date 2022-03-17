@@ -8,6 +8,6 @@ export const tap_ = <R, E, A>(self: EffectSource<R, E, A>, f: (a: A) => any) =>
   })
 
 export const tap =
-  <R, E, A>(f: (a: A) => any) =>
-  (self: EffectSource<R, E, A>) =>
+  <A>(f: (a: A) => any) =>
+  <R, E>(self: EffectSource<R, E, A>) =>
     tap_(self, f)

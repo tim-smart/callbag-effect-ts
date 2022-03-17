@@ -2,8 +2,8 @@ import { Cause } from "@effect-ts/core/Effect/Cause"
 import { EffectSource, Signal, Talkback } from "../types"
 
 export const switchMap =
-  <R, R1, E, E1, A, B>(fab: (a: A) => EffectSource<R1, E1, B>) =>
-  (fa: EffectSource<R, E, A>): EffectSource<R & R1, E | E1, B> =>
+  <R1, E1, A, B>(fab: (a: A) => EffectSource<R1, E1, B>) =>
+  <R, E>(fa: EffectSource<R, E, A>): EffectSource<R & R1, E | E1, B> =>
   (r) =>
   (_, sink) => {
     let talkback: Talkback
