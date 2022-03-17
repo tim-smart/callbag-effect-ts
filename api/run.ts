@@ -1,13 +1,16 @@
 import * as T from "@effect-ts/core/Effect"
-import { EffectSource, Signal, Talkback } from "../types"
+import { EffectSink, EffectSource, Signal, Sink, Talkback } from "../types"
 
-export const run = <R, E, A>(fa: EffectSource<R, E, A>): T.Effect<R, E, void> =>
+export const run = <R, R1, E, A>(
+  self: EffectSource<R, E, A>,
+  sink: EffectSink<R1, E, A>,
+): T.Effect<R, E, void> =>
   T.withRuntimeM<R, R, E, void>((r) =>
     T.effectAsyncInterrupt<unknown, E, void>((cb) => {
       let aborted = false
       let talkback: Talkback
 
-      fa(r)(Signal.START, (t, d) => {
+      self(r)(Signal.START, (t, d) => {
         if (aborted) return
 
         switch (t) {

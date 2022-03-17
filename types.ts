@@ -7,19 +7,24 @@ export enum Signal {
   END = 2,
 }
 
-export type TalkbackArgs = [signal: Signal.DATA] | [signal: Signal.END]
-export type Talkback = (...op: TalkbackArgs) => void
+export type TalkbackArgs<E> =
+  | [signal: Signal.DATA]
+  | [signal: Signal.END, error?: E]
+export type Talkback<E = never> = (...op: TalkbackArgs<E>) => void
 
-export type SinkArgs<E, A> =
-  | [signal: Signal.START, talkback: Talkback]
+export type SinkArgs<A, EI, EO> =
+  | [signal: Signal.START, talkback: Talkback<EO>]
   | [signal: Signal.DATA, data: A]
-  | [signal: Signal.END, error: E | undefined]
-export type Sink<E, A> = (...op: SinkArgs<E, A>) => void
+  | [signal: Signal.END, error: EI | undefined]
+export type Sink<A, EI = unknown, EO = never> = (
+  ...op: SinkArgs<A, EI, EO>
+) => void
 
-export type SourceArgs<E, A> = [signal: Signal.START, sink: Sink<E, A>]
-export type Source<E, A> = (...op: SourceArgs<E, A>) => void
-
-export type Callbag<E, A> = Source<E, A> | Sink<E, A>
+export type SourceArgs<A, EO = unknown> = [
+  signal: Signal.START,
+  sink: Sink<A, EO, any>,
+]
+export type Source<A, EO = unknown> = (...op: SourceArgs<A, EO>) => void
 
 // Effect variants
 export type EffectSource<R, E, A> = (
