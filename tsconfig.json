@@ -6,7 +6,9 @@
     "sourceMap": true,
     "declaration": true,
     "moduleResolution": "node",
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "module": "CommonJS"
   },
 
   "exclude": ["node_modules"]

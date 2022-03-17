@@ -102,7 +102,6 @@ const asyncImpl =
               }
             }),
           ),
-          T.ignore,
         ),
       )
 

@@ -43,7 +43,10 @@ export const make = <R, E>(
     currentCancel = r.runCancel(e, (exit) => {
       currentCancel = undefined
 
-      if (exit._tag === "Failure" && exit.cause._tag !== "Interrupt") {
+      if (
+        exit._tag === "Failure" &&
+        !(exit.cause._tag === "Interrupt" && aborted)
+      ) {
         onFail(exit.cause)
       }
 

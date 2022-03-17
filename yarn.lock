@@ -1258,6 +1258,13 @@ callbag-map@^1.1.0:
   dependencies:
     callbag "^1.1.0"
 
+callbag-merge@^3.2.2:
+  version "3.2.2"
+  resolved "https://registry.yarnpkg.com/callbag-merge/-/callbag-merge-3.2.2.tgz#87e4a9705dfcea109908296397834d648e8ea435"
+  integrity sha512-VeBE5Mh7LUxYwxaITKsHt3CmZeMMfpsjEamMD0Wf6ajrFE6FGa4aQnd7SZ5h0KSSTcivxe0UaT6x97f8Y9atzA==
+  dependencies:
+    callbag "^1.2.0"
+
 callbag@^1.1.0, callbag@^1.2.0:
   version "1.5.0"
   resolved "https://registry.yarnpkg.com/callbag/-/callbag-1.5.0.tgz#b9d0be57e979c39d1616280320a4d3636f08c9e9"
