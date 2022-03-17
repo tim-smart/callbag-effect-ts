@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.4.0](https://github.com/tim-smart/callbag-effect-ts/compare/callbag-effect-ts@0.3.0...callbag-effect-ts@0.4.0) (2022-03-17)
+
+
+### Bug Fixes
+
+* only replace source once in catchError ([d6198ee](https://github.com/tim-smart/callbag-effect-ts/commit/d6198ee4e31d4dec166ee48ee8f87f8284e4bd42))
+* propogate end in switchMap ([56bfc69](https://github.com/tim-smart/callbag-effect-ts/commit/56bfc691780e64e5553171bd0cda2f7c71bf54d8))
+
+
+### Features
+
+* catchError ([922d477](https://github.com/tim-smart/callbag-effect-ts/commit/922d4770282ef1372dc59ababc3b3dfbb4a9e796))
+* retry ([3d083ea](https://github.com/tim-smart/callbag-effect-ts/commit/3d083eab1a5a09d7a5eccb8204c1f1fe4938121a))
+
+
+
+
+
 # [0.3.0](https://github.com/tim-smart/callbag-effect-ts/compare/callbag-effect-ts@0.2.0...callbag-effect-ts@0.3.0) (2022-03-17)
 
 
