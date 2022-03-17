@@ -53,9 +53,9 @@ const program = pipe(
   CB.unwrapManaged,
   CB.chainPar((i) => CB.of(i + 10)),
   CB.merge(CB.of(20)),
-  CB.tapEffect((i) => log("got", i)),
+  CB.tap((i) => log("got", i)),
   CB.drain,
-  CB.tapEffect((i) => log("got", i)),
+  CB.tap((i) => log("got", i)),
   CB.runDrain,
 )
 

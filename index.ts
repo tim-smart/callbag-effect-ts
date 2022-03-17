@@ -22,7 +22,6 @@ export * from "./api/retry"
 export * from "./api/run"
 export * from "./api/switchMap"
 export * from "./api/tap"
-export * from "./api/tapEffect"
 export * from "./api/unwrap"
 export * from "./api/unwrapManaged"
 

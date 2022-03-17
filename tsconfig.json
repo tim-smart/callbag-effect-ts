@@ -8,7 +8,13 @@
     "moduleResolution": "node",
     "skipLibCheck": true,
     "esModuleInterop": true,
-    "module": "CommonJS"
+    "module": "CommonJS",
+
+    "plugins": [
+      {
+        "transform": "@effect-ts/tracing-plugin"
+      }
+    ]
   },
 
   "exclude": ["node_modules"]

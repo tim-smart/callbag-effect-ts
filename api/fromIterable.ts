@@ -1,3 +1,4 @@
+// ets_tracing: off
 import cbFromIter from "callbag-from-iter"
 import { EffectSource } from "../types"
 

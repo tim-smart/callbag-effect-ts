@@ -1,3 +1,4 @@
+// ets_tracing: off
 import * as H from "@effect-ts/core/Effect/Hub"
 import * as M from "@effect-ts/core/Effect/Managed"
 import { pipe } from "@effect-ts/core/Function"

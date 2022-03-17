@@ -1,3 +1,4 @@
+// ets_tracing: off
 import { EffectSource, Signal, Talkback } from "../types"
 
 export const catchError_ =
@@ -39,6 +40,9 @@ export const catchError_ =
     replaceSource(self, true)
   }
 
+/**
+ * @ets_data_first catchError_
+ */
 export const catchError =
   <R1, E, E1, B>(onError: (e: E) => EffectSource<R1, E1, B>) =>
   <R, A>(fa: EffectSource<R, E, A>): EffectSource<R & R1, E | E1, A | B> =>

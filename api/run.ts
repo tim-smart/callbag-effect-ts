@@ -1,3 +1,4 @@
+// ets_tracing: off
 import * as T from "@effect-ts/core/Effect"
 import { noop } from "../Sink"
 import { EffectSink, EffectSource, Signal, Talkback } from "../types"
@@ -41,6 +42,9 @@ export const run_ = <R, R1, EI, EO, A>(
     }),
   )
 
+/**
+ * @ets_data_first run_
+ */
 export const run =
   <R1, EI, EO, A>(sink: EffectSink<R1, EI, EO, A>) =>
   <R>(self: EffectSource<R, EI, A>) =>

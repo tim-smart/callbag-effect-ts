@@ -1,3 +1,4 @@
+// ets_tracing: off
 import * as T from "@effect-ts/core/Effect"
 import { HasClock } from "@effect-ts/core/Effect/Clock"
 import * as SC from "@effect-ts/core/Effect/Schedule"

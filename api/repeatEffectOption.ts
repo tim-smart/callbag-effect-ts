@@ -1,3 +1,4 @@
+// ets_tracing: off
 import * as T from "@effect-ts/core/Effect"
 import * as C from "@effect-ts/core/Effect/Cause"
 import * as O from "@effect-ts/core/Option"

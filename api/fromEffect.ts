@@ -1,3 +1,4 @@
+// ets_tracing: off
 import * as T from "@effect-ts/core/Effect"
 import { pipe } from "@effect-ts/core/Function"
 import * as O from "@effect-ts/core/Option"

@@ -1,3 +1,4 @@
+// ets_tracing: off
 import * as T from "@effect-ts/core/Effect"
 import { EffectSource } from "../types"
 import { flatten } from "./flatten"

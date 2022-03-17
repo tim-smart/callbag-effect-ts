@@ -1,3 +1,4 @@
+// ets_tracing: off
 import * as T from "@effect-ts/core/Effect"
 import * as O from "@effect-ts/core/Option"
 import { AsyncCancel } from "@effect-ts/core/Effect"

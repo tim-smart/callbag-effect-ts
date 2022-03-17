@@ -1,9 +1,11 @@
-import { Cause } from "@effect-ts/core/Effect/Cause"
+// ets_tracing: off
 import { EffectSource, Signal, Talkback } from "../types"
 
-export const switchMap =
-  <R1, E1, A, B>(fab: (a: A) => EffectSource<R1, E1, B>) =>
-  <R, E>(fa: EffectSource<R, E, A>): EffectSource<R & R1, E | E1, B> =>
+export const switchMap_ =
+  <R, R1, E, E1, A, B>(
+    fa: EffectSource<R, E, A>,
+    fab: (a: A) => EffectSource<R1, E1, B>,
+  ): EffectSource<R & R1, E | E1, B> =>
   (r) =>
   (_, sink) => {
     let talkback: Talkback<any>
@@ -62,3 +64,11 @@ export const switchMap =
       }
     })
   }
+
+/**
+ * @ets_data_first switchMap_
+ */
+export const switchMap =
+  <R1, E1, A, B>(fab: (a: A) => EffectSource<R1, E1, B>) =>
+  <R, E>(fa: EffectSource<R, E, A>): EffectSource<R & R1, E | E1, B> =>
+    switchMap_(fa, fab)

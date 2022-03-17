@@ -1,3 +1,4 @@
+// ets_tracing: off
 import { EffectSource, Signal } from "../types"
 
 export const drain =

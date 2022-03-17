@@ -1,3 +1,4 @@
+// ets_tracing: off
 import { pipe } from "@effect-ts/core/Function"
 import cbFlatten from "callbag-flatten"
 import { EffectSource } from "../types"

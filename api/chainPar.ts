@@ -1,3 +1,4 @@
+// ets_tracing: off
 import { EffectSource } from "../types"
 import * as CP from "./_internal/chainPar"
 
@@ -10,6 +11,9 @@ export const chainPar_ =
   (r) =>
     CP.chainPar_(self(r), (a) => fab(a)(r), maxConcurrency)
 
+/**
+ * @ets_data_first chainPar_
+ */
 export const chainPar =
   <R1, E1, A, B>(
     fab: (a: A) => EffectSource<R1, E1, B>,

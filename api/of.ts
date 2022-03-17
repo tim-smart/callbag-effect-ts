@@ -1,3 +1,4 @@
+// ets_tracing: off
 import { EffectSource } from "../types"
 import { fromIterable } from "./fromIterable"
 

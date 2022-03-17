@@ -1,10 +1,11 @@
+// ets_tracing: off
 import * as T from "@effect-ts/core/Effect"
 import { HasClock } from "@effect-ts/core/Effect/Clock"
 import * as SC from "@effect-ts/core/Effect/Schedule"
 import { pipe } from "@effect-ts/core/Function"
 import { EffectSource } from "../types"
 import { catchError_ } from "./catchError"
-import { tapEffect } from "./tapEffect"
+import { tap } from "./tap"
 import { unwrap } from "./unwrap"
 
 export const retry_ = <R, R1, E, A, Z>(
@@ -25,7 +26,7 @@ export const retry_ = <R, R1, E, A, Z>(
                 T.succeed(
                   pipe(
                     loop,
-                    tapEffect(() => driver.reset),
+                    tap(() => driver.reset),
                   ),
                 ),
             ),
@@ -37,8 +38,10 @@ export const retry_ = <R, R1, E, A, Z>(
     }),
     unwrap,
   )
-SC.delayed
 
+/**
+ * @ets_data_first retry_
+ */
 export const retry =
   <R1, E, Z>(schedule: SC.Schedule<R1, E, Z>) =>
   <R, A>(self: EffectSource<R, E, A>): EffectSource<R & R1 & HasClock, E, A> =>

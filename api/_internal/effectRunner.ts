@@ -1,3 +1,4 @@
+// ets_tracing: off
 import * as T from "@effect-ts/core/Effect"
 import { CustomRuntime } from "@effect-ts/core/Effect"
 import * as Cause from "@effect-ts/core/Effect/Cause"
