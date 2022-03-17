@@ -17,10 +17,12 @@ export const unwrapManaged =
           M.use_(mfa, (fa) =>
             T.effectAsyncInterrupt((cb) => {
               let innerTalkback: Talkback
+              let endCalled = false
 
               const talkback: Talkback = (signal) => {
                 innerTalkback?.(signal)
                 if (signal === Signal.END) {
+                  endCalled = true
                   r.run(cancel)
                 }
               }
@@ -40,6 +42,7 @@ export const unwrapManaged =
               })
 
               return T.succeedWith(() => {
+                if (endCalled) return
                 innerTalkback?.(Signal.END)
               })
             }),
