@@ -1,4 +1,4 @@
-import * as CB from "callbag-basics"
+import cbMap from "callbag-map"
 import { EffectSource } from "../types"
 
 export const map_ =
@@ -7,7 +7,7 @@ export const map_ =
     fab: (a: A) => B,
   ): EffectSource<R, E, B> =>
   (r) =>
-    CB.map(fab)(self(r) as any) as any
+    cbMap(fab)(self(r) as any) as any
 
 export const map =
   <R, E, A, B>(fab: (a: A) => B) =>
