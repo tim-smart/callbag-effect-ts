@@ -32,22 +32,24 @@ const asyncImpl =
   ): EffectSource<R, E, X> =>
   (r) =>
   (_, sink) => {
-    const runner = Runner.make(r, failWithCause)
+    const pushRunner = Runner.make(r, failWithCause)
+    const pumpRunner = Runner.make(r, failWithCause)
     const buffer = Q.unsafeMakeDropping<A | EOF>(bufferSize)
 
     let completed = false
     const cleanup = () => {
       completed = true
-      runner.abort(Q.shutdown(buffer))
+      pushRunner.abort(Q.shutdown(buffer))
+      pumpRunner.abort()
     }
 
     const chunk = (chunk: C.Chunk<A>) => {
       if (completed) return
-      return runner.runEffect(Q.offerAll_(buffer, chunk))
+      return pushRunner.runEffect(Q.offerAll_(buffer, chunk))
     }
     const single = (data: A) => {
       if (completed) return
-      return runner.runEffect(Q.offer_(buffer, data))
+      return pushRunner.runEffect(Q.offer_(buffer, data))
     }
 
     function failWithCause(error: Cause.Cause<E>) {
@@ -62,7 +64,7 @@ const asyncImpl =
     const end = () => {
       if (completed) return
       completed = true
-      runner.runEffect(Q.offer_(buffer, EOF))
+      pushRunner.runEffect(Q.offer_(buffer, EOF))
     }
 
     const done = (exit: Exit<E, A>) => {
@@ -73,7 +75,7 @@ const asyncImpl =
         return failWithCause(exit.cause)
       }
 
-      runner.runEffect(Q.offerAll_(buffer, C.make(exit.value, EOF)))
+      pushRunner.runEffect(Q.offerAll_(buffer, C.make(exit.value, EOF)))
     }
 
     register({
@@ -85,7 +87,7 @@ const asyncImpl =
     })
 
     const pump = () =>
-      runner.runEffect(
+      pumpRunner.runEffect(
         pipe(
           take(buffer),
           T.tap(([a, eof]) =>
