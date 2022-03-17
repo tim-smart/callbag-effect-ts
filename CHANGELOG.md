@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.4.2](https://github.com/tim-smart/callbag-effect-ts/compare/callbag-effect-ts@0.4.1...callbag-effect-ts@0.4.2) (2022-03-17)
+
+
+### Bug Fixes
+
+* widen retry types ([a622293](https://github.com/tim-smart/callbag-effect-ts/commit/a6222937d26ce75d2d7ee3b3a13f0f3fde66ecfc))
+
+
+
+
+
 ## [0.4.1](https://github.com/tim-smart/callbag-effect-ts/compare/callbag-effect-ts@0.4.0...callbag-effect-ts@0.4.1) (2022-03-17)
 
 
