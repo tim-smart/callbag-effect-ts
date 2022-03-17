@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.7.4](https://github.com/tim-smart/callbag-effect-ts/compare/callbag-effect-ts@0.7.3...callbag-effect-ts@0.7.4) (2022-03-17)
+
+
+### Bug Fixes
+
+* memoize share by env not runtime ([795e50e](https://github.com/tim-smart/callbag-effect-ts/commit/795e50e94a857e5efcca08a9ed07c2eedc0a36e1))
+
+
+
+
+
 ## [0.7.3](https://github.com/tim-smart/callbag-effect-ts/compare/callbag-effect-ts@0.7.2...callbag-effect-ts@0.7.3) (2022-03-17)
 
 
