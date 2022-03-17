@@ -5,7 +5,7 @@ export const catchError_ =
   <R, R1, E, E1, A, B>(
     self: EffectSource<R, E, A>,
     onError: (e: E) => EffectSource<R1, E1, B>,
-  ): EffectSource<R & R1, E | E1, A | B> =>
+  ): EffectSource<R & R1, E1, A | B> =>
   (r) =>
   (_, sink) => {
     let innerTalkback: Talkback<any>
@@ -45,5 +45,5 @@ export const catchError_ =
  */
 export const catchError =
   <R1, E, E1, B>(onError: (e: E) => EffectSource<R1, E1, B>) =>
-  <R, A>(fa: EffectSource<R, E, A>): EffectSource<R & R1, E | E1, A | B> =>
+  <R, A>(fa: EffectSource<R, E, A>) =>
     catchError_(fa, onError)

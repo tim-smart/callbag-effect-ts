@@ -1,5 +1,6 @@
 export * from "./types"
 
+export * from "./api/alt"
 export * from "./api/async"
 export * from "./api/catchError"
 export * from "./api/chain"
@@ -22,6 +23,7 @@ export * from "./api/retry"
 export * from "./api/run"
 export * from "./api/switchMap"
 export * from "./api/tap"
+export * from "./api/tapError"
 export * from "./api/unwrap"
 export * from "./api/unwrapManaged"
 
