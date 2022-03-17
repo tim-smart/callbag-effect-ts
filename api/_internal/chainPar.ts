@@ -1,4 +1,4 @@
-import { Signal, Source, Talkback } from "../types"
+import { Signal, Source, Talkback } from "../../types"
 
 const makeLB = <E, A>(
   onData: (a: A) => void,
@@ -27,7 +27,7 @@ const makeLB = <E, A>(
         onData(data)
       } else if (signal === Signal.END) {
         if (data) {
-          error(data)
+          error(data, localTalkback)
         } else {
           endTalkback(localTalkback)
         }
@@ -53,24 +53,27 @@ const makeLB = <E, A>(
       pullIndex--
     }
 
-    if (!talkbacks.length && parentEnded) {
+    if (!size && parentEnded) {
       onEnd()
     }
   }
 
   const end = () => {
     parentEnded = true
+
+    if (!size) {
+      onEnd()
+    }
   }
 
-  const abort = () => {
+  const abort = (from?: Talkback) => {
     aborted = true
-    end()
-    talkbacks.forEach((tb) => tb(Signal.END))
+    talkbacks.forEach((tb) => from !== tb && tb(Signal.END))
     talkbacks.splice(0)
   }
 
-  const error = (err: E) => {
-    abort()
+  const error = (err: E, tb?: Talkback) => {
+    abort(tb)
     onError(err)
   }
 
