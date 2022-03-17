@@ -10,7 +10,6 @@ export const switchMap =
     let innerTalkback: Talkback | undefined
     let waitingForData = false
     let sourceEnded = false
-    let pendingError: Cause<E> | undefined
 
     fa(r)(Signal.START, (t, d) => {
       if (t === Signal.START) {
@@ -44,7 +43,10 @@ export const switchMap =
             innerTalkback = undefined
 
             if (sourceEnded) {
-              sink(Signal.END, innerData || pendingError)
+              sink(Signal.END, innerData)
+            } else if (innerData) {
+              talkback(Signal.END)
+              sink(Signal.END, innerData)
             } else if (waitingForData) {
               waitingForData = false
               talkback(Signal.DATA)
@@ -53,9 +55,8 @@ export const switchMap =
         })
       } else if (t === Signal.END) {
         sourceEnded = true
-        pendingError = d
 
-        if (!innerTalkback) {
+        if (!innerTalkback || d) {
           sink(Signal.END, d)
         }
       }
