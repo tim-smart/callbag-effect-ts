@@ -7,11 +7,11 @@ export const share = <R, E, A>(
   const cache = new Map<any, any>()
 
   return (r) => {
-    const value = cache.get(r)
+    const value = cache.get(r.env)
     if (value) return value
 
     const source = cbShare(self(r) as any)
-    cache.set(r, source)
+    cache.set(r.env, source)
     return source
   }
 }
