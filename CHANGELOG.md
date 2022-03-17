@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0](https://github.com/tim-smart/callbag-effect-ts/compare/callbag-effect-ts@0.1.0...callbag-effect-ts@0.2.0) (2022-03-17)
+
+
+### Bug Fixes
+
+* seperate push and pull effect runners in async ([f00b864](https://github.com/tim-smart/callbag-effect-ts/commit/f00b864cd17391eeb25212791dce7a11cd94c750))
+
+
+### Features
+
+* fromManaged and unwrapManaged ([a121d19](https://github.com/tim-smart/callbag-effect-ts/commit/a121d19dbc439c9140f96f4e6ff3328bdb254cb5))
+
+
+
+
+
 # 0.1.0 (2022-03-16)
 
 
