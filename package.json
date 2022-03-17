@@ -37,6 +37,7 @@
     "callbag-from-iter": "^1.3.0",
     "callbag-map": "^1.1.0",
     "callbag-merge": "^3.2.2",
+    "callbag-share": "^1.3.0",
     "strict-callbag": "^0.2.0"
   }
 }
