@@ -7,7 +7,6 @@ const makeLB = <E, A>(
 ) => {
   let parentEnded = false
   let dataWanted = false
-  const activePulls: Talkback[] = []
   let aborted = false
   let size = 0
 
@@ -25,12 +24,8 @@ const makeLB = <E, A>(
         localTalkback = data
         addTalkback(localTalkback)
       } else if (signal === Signal.DATA) {
+        dataWanted = false
         onData(data)
-
-        const index = activePulls.indexOf(localTalkback)
-        if (index >= 0) {
-          activePulls.splice(index, 1)
-        }
       } else if (signal === Signal.END) {
         if (data) {
           error(data, localTalkback)
@@ -54,12 +49,6 @@ const makeLB = <E, A>(
     const index = talkbacks.indexOf(tb)
     talkbacks.splice(index, 1)
     size--
-
-    while (activePulls.includes(tb)) {
-      const index = activePulls.indexOf(tb)
-      activePulls.splice(index, 1)
-      pull()
-    }
 
     if (index < pullIndex) {
       pullIndex--
@@ -90,8 +79,8 @@ const makeLB = <E, A>(
   }
 
   const pull = () => {
+    dataWanted = true
     if (!talkbacks.length) {
-      dataWanted = true
       return
     }
 
@@ -101,7 +90,6 @@ const makeLB = <E, A>(
 
     const puller = talkbacks[pullIndex]
     puller(Signal.DATA)
-    activePulls.push(puller)
     pullIndex++
   }
 
