@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.3.0](https://github.com/tim-smart/callbag-effect-ts/compare/callbag-effect-ts@0.2.0...callbag-effect-ts@0.3.0) (2022-03-17)
+
+
+### Bug Fixes
+
+* prevent duplicate end signals in unwrapManaged ([9057a32](https://github.com/tim-smart/callbag-effect-ts/commit/9057a32438030c637bee1259e7109fd40d729669))
+
+
+### Features
+
+* drain, merge, fromQueue ([94b0a66](https://github.com/tim-smart/callbag-effect-ts/commit/94b0a663ab3a6f688da48ce035a4fb948e0f5326))
+* repeatEffectOption & fromSchedule ([28047a9](https://github.com/tim-smart/callbag-effect-ts/commit/28047a97f90acca0809ae96c46a0c3c614a759cf))
+* switchMap and other fixes ([a8cc648](https://github.com/tim-smart/callbag-effect-ts/commit/a8cc64862b6159e4aebb09012ff411a023ca9e7b))
+
+
+
+
+
 # [0.2.0](https://github.com/tim-smart/callbag-effect-ts/compare/callbag-effect-ts@0.1.0...callbag-effect-ts@0.2.0) (2022-03-17)
 
 
