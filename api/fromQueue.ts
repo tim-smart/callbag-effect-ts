@@ -1,31 +1,24 @@
 import * as T from "@effect-ts/core/Effect"
+import * as CS from "@effect-ts/core/Effect/Cause"
 import * as Q from "@effect-ts/core/Effect/Queue"
 import { pipe } from "@effect-ts/core/Function"
-import { EffectSource, Signal } from "../types"
-import * as Runner from "./_internal/effectRunner"
+import * as O from "@effect-ts/core/Option"
+import { EffectSource } from "../types"
+import { repeatEffectOption } from "./repeatEffectOption"
 
-export const fromQueue =
-  <R, E, A>(queue: Q.XDequeue<R, E, A>): EffectSource<R, E, A> =>
-  (r) =>
-  (_, sink) => {
-    const runner = Runner.make<R, E>(r, (cause) => {
-      runner.abort()
-      sink(Signal.END, cause._tag !== "Interrupt" ? cause : undefined)
-    })
-
-    sink(Signal.START, (signal) => {
-      if (signal === Signal.DATA) {
-        runner.runEffect(
-          pipe(
-            Q.take(queue),
-            T.map((a) => {
-              sink(Signal.DATA, a)
-            }),
-          ),
-        )
-      } else if (signal === Signal.END) {
-        runner.abort()
-        sink(Signal.END, undefined)
-      }
-    })
-  }
+export const fromQueue = <R, E, A>(
+  queue: Q.XDequeue<R, E, A>,
+): EffectSource<R, E, A> =>
+  repeatEffectOption(
+    pipe(
+      Q.take(queue),
+      T.catchAllCause((c) =>
+        T.chain_(Q.isShutdown(queue), (down) => {
+          if (down && CS.interrupted(c)) {
+            return T.fail(O.none)
+          }
+          return T.mapError_(T.halt(c), O.some)
+        }),
+      ),
+    ),
+  )
