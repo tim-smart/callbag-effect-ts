@@ -13,7 +13,7 @@ export type Talkback = (...op: TalkbackArgs) => void
 export type SinkArgs<E, A> =
   | [signal: Signal.START, talkback: Talkback]
   | [signal: Signal.DATA, data: A]
-  | [signal: Signal.END, error?: E]
+  | [signal: Signal.END, error: E | undefined]
 export type Sink<E, A> = (...op: SinkArgs<E, A>) => void
 
 export type SourceArgs<E, A> = [signal: Signal.START, sink: Sink<E, A>]

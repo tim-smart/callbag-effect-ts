@@ -1378,7 +1378,7 @@ callbag-take@1:
   dependencies:
     callbag "^1.1.0"
 
-callbag@1, callbag@^1.1.0, callbag@^1.2.0, callbag@^1.5.0:
+callbag@1, callbag@^1.1.0, callbag@^1.2.0:
   version "1.5.0"
   resolved "https://registry.yarnpkg.com/callbag/-/callbag-1.5.0.tgz#b9d0be57e979c39d1616280320a4d3636f08c9e9"
   integrity sha512-PH3id0HEb/cNS+BehYlF4Z5wzjKAIUao6ab2hWtMs2bi6aW+0PXl0jymqwnFyT2cQO2h30ggUgpQlmzOpAIKNg==

@@ -7,12 +7,12 @@ export const run = <R, E, A>(fa: EffectSource<R, E, A>): T.Effect<R, E, void> =>
       let aborted = false
       let talkback: Talkback
 
-      fa(r)(Signal.START, (...op) => {
+      fa(r)(Signal.START, (t, d) => {
         if (aborted) return
 
-        switch (op[0]) {
+        switch (t) {
           case Signal.START:
-            talkback = op[1]
+            talkback = d
             talkback(Signal.DATA)
             break
 
@@ -21,7 +21,7 @@ export const run = <R, E, A>(fa: EffectSource<R, E, A>): T.Effect<R, E, void> =>
             break
 
           case Signal.END:
-            cb(op[1] ? T.uncause(T.succeed(op[1])) : T.unit)
+            cb(d ? T.uncause(T.succeed(d)) : T.unit)
             break
         }
       })

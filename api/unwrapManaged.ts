@@ -10,33 +10,26 @@ export const unwrapManaged =
   (r) =>
   (_, sink) => {
     let cancel: AsyncCancel<E | E1, void>
+    let innerTalkback: Talkback
+    let endCalled = false
 
     sink(Signal.START, (signal) => {
+      innerTalkback?.(signal)
+
       if (signal === Signal.DATA) {
         cancel ??= r.runCancel(
           M.use_(mfa, (fa) =>
             T.effectAsyncInterrupt((cb) => {
-              let innerTalkback: Talkback
-              let endCalled = false
-
-              const talkback: Talkback = (signal) => {
-                innerTalkback?.(signal)
-                if (signal === Signal.END) {
-                  endCalled = true
-                  r.run(cancel)
-                }
-              }
-
-              fa(r)(Signal.START, (...op) => {
-                if (op[0] === Signal.START) {
-                  innerTalkback = op[1]
-                  sink(Signal.START, talkback)
+              fa(r)(Signal.START, (t, d) => {
+                if (t === Signal.START) {
+                  innerTalkback = d
+                  innerTalkback(Signal.DATA)
                   return
                 }
 
-                sink(...op)
+                sink(t as any, d as any)
 
-                if (op[0] === Signal.END) {
+                if (t === Signal.END) {
                   cb(T.unit)
                 }
               })
@@ -53,8 +46,9 @@ export const unwrapManaged =
             }
           },
         )
-      } else if (signal === Signal.END && cancel) {
-        r.run(cancel)
+      } else if (signal === Signal.END) {
+        endCalled = true
+        if (cancel) r.run(cancel)
       }
     })
   }

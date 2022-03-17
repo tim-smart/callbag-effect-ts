@@ -20,7 +20,7 @@ export const fromEffectOption =
               if (e.value._tag === "Some") {
                 sink(Signal.DATA, e.value.value)
               }
-              sink(Signal.END)
+              sink(Signal.END, undefined)
             } else {
               sink(Signal.END, e.cause)
             }

@@ -98,7 +98,7 @@ const asyncImpl =
 
               if (eof) {
                 cleanup()
-                sink(Signal.END)
+                sink(Signal.END, undefined)
               }
             }),
           ),
@@ -106,8 +106,8 @@ const asyncImpl =
         ),
       )
 
-    const talkback: Talkback = (...op) => {
-      switch (op[0]) {
+    const talkback: Talkback = (t) => {
+      switch (t) {
         case Signal.DATA:
           pump()
           break

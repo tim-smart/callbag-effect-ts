@@ -1,36 +1,41 @@
+import * as L from "@effect-ts/core/Effect/Layer"
 import * as M from "@effect-ts/core/Effect/Managed"
 import * as T from "@effect-ts/core/Effect"
 import { pipe } from "@effect-ts/core/Function"
-import * as C from "@effect-ts/core/Collections/Immutable/Chunk"
 import { runMain } from "@effect-ts/node/Runtime"
 import * as CB from "../mod"
+import { tag } from "@effect-ts/core/Has"
 
+// Some services
 type Error = { _tag: "Fail" }
-
-const stream = pipe(
-  CB.async<unknown, Error, number>((emit) => {
-    emit.single(1)
-    emit.chunk(C.make(2, 3))
-    emit.end()
-  }),
-  CB.tap(console.error),
-  CB.run,
-)
 
 const makeResource = () => ({
   closed: false,
   count: 0,
   getCount() {
+    if (this.closed) throw new Error("getCount: closed!")
     return this.count++
   },
   close() {
-    console.error("close")
     this.closed = true
   },
 })
 
-const managedStream = pipe(
-  T.succeedWith(makeResource),
+interface Resource extends ReturnType<typeof makeResource> {}
+const Resource = tag<Resource>()
+const LiveResource = L.fromFunction(Resource)(makeResource)
+
+const makeLogger = () => ({
+  log: (...args: any[]) => T.succeedWith(() => console.error(...args)),
+})
+interface Logger extends ReturnType<typeof makeLogger> {}
+const Logger = tag<Logger>()
+const LiveLogger = L.fromFunction(Logger)(makeLogger)
+const log = (...args: any[]) => T.accessServiceM(Logger)((l) => l.log(...args))
+
+// program
+const program = pipe(
+  T.accessService(Resource)((r) => r),
   M.makeExit((r) =>
     T.succeedWith(() => {
       r.close()
@@ -38,7 +43,6 @@ const managedStream = pipe(
   ),
   M.map((r) =>
     CB.async<unknown, Error, number>((emit) => {
-      console.error("async")
       emit.single(r.getCount())
       emit.single(r.getCount())
       setTimeout(() => emit.single(r.getCount()), 1000)
@@ -47,8 +51,14 @@ const managedStream = pipe(
     }),
   ),
   CB.unwrapManaged,
-  CB.tap(console.error),
+  CB.switchMap((i) => CB.of(i + 10)),
+  CB.tapEffect((i) => log("got", i)),
   CB.run,
 )
 
-pipe(managedStream, runMain)
+pipe(
+  program,
+  T.provideSomeLayer(LiveResource),
+  T.provideSomeLayer(LiveLogger),
+  runMain,
+)
