@@ -150,7 +150,7 @@ export const asyncChunk = <R, E, A>(
 
         const option = filtered.length ? O.some(filtered) : O.none
 
-        return complete ? [option, true] : [option, false]
+        return [option, complete]
       }),
     ),
   )
