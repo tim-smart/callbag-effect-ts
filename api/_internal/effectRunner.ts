@@ -6,9 +6,16 @@ import * as Cause from "@effect-ts/core/Effect/Cause"
 export const make = <R, E>(
   r: CustomRuntime<R, unknown>,
   onFail: (cause: Cause.Cause<E>) => void,
+  capacity = Infinity,
 ) => {
   let effects: T.Effect<R, E, any>[] = []
   let effectsOffset = 0
+  const waitingCount = () => effects.length - effectsOffset
+  const resetEffects = () => {
+    effects = []
+    effectsOffset = 0
+  }
+
   let currentCancel: T.AsyncCancel<E, any> | undefined = undefined
 
   let aborted = false
@@ -16,8 +23,7 @@ export const make = <R, E>(
   const abort = (cleanup?: T.UIO<void>) => {
     if (aborted) return
 
-    effects = []
-    effectsOffset = 0
+    resetEffects()
 
     if (currentCancel) {
       r.run(currentCancel)
@@ -35,7 +41,7 @@ export const make = <R, E>(
 
     if (!currentCancel && !effects.length) {
       runEffectImpl(e)
-    } else {
+    } else if (waitingCount() < capacity - 1) {
       effects.push(e)
     }
   }
@@ -57,10 +63,7 @@ export const make = <R, E>(
 
   const runNextEffect = () => {
     if (effectsOffset >= effects.length) {
-      if (effectsOffset > 0) {
-        effects = []
-        effectsOffset = 0
-      }
+      resetEffects()
       return
     }
 

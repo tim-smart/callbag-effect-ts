@@ -34,7 +34,7 @@ const asyncImpl =
   (r) =>
   (_, sink) => {
     const pushRunner = Runner.make(r, failWithCause)
-    const pumpRunner = Runner.make(r, failWithCause)
+    const pumpRunner = Runner.make(r, failWithCause, 1)
     const buffer = Q.unsafeMakeDropping<A | EOF>(bufferSize)
 
     let completed = false

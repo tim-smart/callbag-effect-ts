@@ -9,18 +9,22 @@ export const repeatEffectOption =
   <R, E, A>(fa: T.Effect<R, O.Option<E>, A>): EffectSource<R, E, A> =>
   (r) =>
   (_, sink) => {
-    const runner = Runner.make<R, O.Option<E>>(r, (cause) => {
-      runner.abort()
+    const runner = Runner.make<R, O.Option<E>>(
+      r,
+      (cause) => {
+        runner.abort()
 
-      if (cause._tag == "Fail") {
-        sink(
-          Signal.END,
-          cause.value._tag === "Some" ? C.fail(cause.value.value) : undefined,
-        )
-      } else {
-        sink(Signal.END, cause as any)
-      }
-    })
+        if (cause._tag == "Fail") {
+          sink(
+            Signal.END,
+            cause.value._tag === "Some" ? C.fail(cause.value.value) : undefined,
+          )
+        } else {
+          sink(Signal.END, cause as any)
+        }
+      },
+      1,
+    )
 
     sink(Signal.START, (signal) => {
       if (signal === Signal.DATA) {
