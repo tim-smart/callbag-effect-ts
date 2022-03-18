@@ -4,6 +4,7 @@ const makeLB = <E, A>(
   onData: (a: A) => void,
   onError: (e: E) => void,
   onEnd: () => void,
+  onChildEnd: () => void,
 ) => {
   let parentEnded = false
   let dataWanted = false
@@ -59,6 +60,8 @@ const makeLB = <E, A>(
 
     if (!size && parentEnded) {
       onEnd()
+    } else {
+      onChildEnd()
     }
   }
 
@@ -117,15 +120,17 @@ export const chainPar_ =
       (a) => sink(Signal.DATA, a),
       (e) => sink(Signal.END, e),
       () => sink(Signal.END, undefined),
+      () => maybePullInner(),
     )
 
     let talkback: Talkback
     let sourceStarted = false
 
-    const maybePullInner = () =>
+    function maybePullInner() {
       talkback !== undefined && lb.size() < maxInnerCount
         ? talkback(Signal.DATA)
         : undefined
+    }
 
     const startSelf = () =>
       self(Signal.START, (signal, data) => {
@@ -152,7 +157,6 @@ export const chainPar_ =
           startSelf()
         }
 
-        maybePullInner()
         lb.pull()
       } else if (signal === Signal.END) {
         lb.abort()
