@@ -15,7 +15,12 @@ export const run_ = <R, R1, EI, EO, A>(
       let talkback: Talkback
 
       self(r)(Signal.START, (t, d) => {
-        if (aborted) return
+        if (aborted) {
+          if (t === Signal.START) {
+            d(Signal.END)
+          }
+          return
+        }
 
         if (t === Signal.START) {
           talkback = d
