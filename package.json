@@ -1,6 +1,6 @@
 {
   "name": "callbag-effect-ts",
-  "version": "0.7.7",
+  "version": "0.8.0",
   "main": "index.js",
   "license": "MIT",
   "scripts": {
