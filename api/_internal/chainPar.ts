@@ -8,7 +8,6 @@ const makeLB = <E, A>(
   onChildEnd: () => void,
 ) => {
   let parentEnded = false
-  let waitingForTalkback = false
   let aborted = false
   let size = 0
 
@@ -43,8 +42,7 @@ const makeLB = <E, A>(
   const addTalkback = (tb: Talkback) => {
     talkbacks.push(tb)
 
-    if (waitingForTalkback) {
-      waitingForTalkback = false
+    if (talkbacks.length === 1) {
       pull()
     }
   }
@@ -85,7 +83,6 @@ const makeLB = <E, A>(
   }
 
   const pull = () => {
-    waitingForTalkback = true
     if (!talkbacks.length) {
       return
     }
@@ -134,8 +131,8 @@ export const chainPar_ =
     createPipe(self, sink, {
       onStart(tb) {
         talkback = tb
-        tb(Signal.DATA)
         lb.pull()
+        maybePullInner()
       },
       onData(_, data) {
         const inner = fab(data)
