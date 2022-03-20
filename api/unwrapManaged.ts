@@ -2,7 +2,8 @@
 import * as T from "@effect-ts/core/Effect"
 import { AsyncCancel } from "@effect-ts/core/Effect"
 import * as M from "@effect-ts/core/Effect/Managed"
-import { EffectSource, Signal, Talkback } from "../types"
+import { subscribe, Subscription } from "strict-callbag"
+import { EffectSource, Signal } from "../types"
 
 export const unwrapManaged =
   <R, R1, E, E1, A>(
@@ -11,33 +12,33 @@ export const unwrapManaged =
   (r) =>
   (_, sink) => {
     let cancel: AsyncCancel<E | E1, void>
-    let innerTalkback: Talkback
-    let endCalled = false
+    let innerSub: Subscription | undefined
 
     sink(Signal.START, (signal) => {
-      innerTalkback?.(signal)
-
       if (signal === Signal.DATA) {
+        innerSub?.pull()
+
         cancel ??= r.runCancel(
           M.use_(mfa, (fa) =>
             T.effectAsyncInterrupt((cb) => {
-              fa(r)(Signal.START, (t, d) => {
-                if (t === Signal.START) {
-                  innerTalkback = d
-                  innerTalkback(Signal.DATA)
-                  return
-                }
-
-                sink(t as any, d as any)
-
-                if (t === Signal.END) {
+              const sub = subscribe(fa(r), {
+                onStart() {
+                  sub.pull()
+                },
+                onData(data) {
+                  sink(Signal.DATA, data)
+                },
+                onEnd(err) {
+                  sink(Signal.END, err)
                   cb(T.unit)
-                }
+                },
               })
 
+              sub.listen()
+              innerSub = sub
+
               return T.succeedWith(() => {
-                if (endCalled) return
-                innerTalkback?.(Signal.END)
+                sub.cancel()
               })
             }),
           ),
@@ -48,8 +49,6 @@ export const unwrapManaged =
           },
         )
       } else if (signal === Signal.END) {
-        if (endCalled) return
-        endCalled = true
         if (cancel) r.run(cancel)
       }
     })

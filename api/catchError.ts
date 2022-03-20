@@ -32,7 +32,7 @@ export const catchError_ =
         ) {
           replaceSource(onError(d.value as E))
         } else {
-          sink(t as any, d as any)
+          sink(t, d as any)
         }
       })
     }
