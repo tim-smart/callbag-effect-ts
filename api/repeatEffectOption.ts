@@ -31,7 +31,6 @@ export const repeatEffectOption =
         runner.runEffect(T.map_(fa, (a) => sink(Signal.DATA, a)))
       } else if (signal === Signal.END) {
         runner.abort()
-        sink(Signal.END, undefined)
       }
     })
   }

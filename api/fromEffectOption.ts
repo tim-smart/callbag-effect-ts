@@ -12,28 +12,24 @@ export const fromEffectOption =
     let cancel: AsyncCancel<E, O.Option<A>>
 
     sink(Signal.START, (signal) => {
-      switch (signal) {
-        case Signal.DATA:
-          cancel ??= r.runCancel(fa, (e) => {
-            if (aborted) return
+      if (signal === Signal.DATA) {
+        cancel ??= r.runCancel(fa, (e) => {
+          if (aborted) return
 
-            if (e._tag === "Success") {
-              if (e.value._tag === "Some") {
-                sink(Signal.DATA, e.value.value)
-              }
-              sink(Signal.END, undefined)
-            } else {
-              sink(Signal.END, e.cause)
+          if (e._tag === "Success") {
+            if (e.value._tag === "Some") {
+              sink(Signal.DATA, e.value.value)
             }
-          })
-          break
-
-        case Signal.END:
-          aborted = true
-          if (cancel) {
-            r.run(cancel)
+            sink(Signal.END, undefined)
+          } else {
+            sink(Signal.END, e.cause)
           }
-          break
+        })
+      } else if (signal === Signal.END) {
+        aborted = true
+        if (cancel) {
+          r.run(cancel)
+        }
       }
     })
   }

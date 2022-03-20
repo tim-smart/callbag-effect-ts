@@ -1,6 +1,8 @@
 import filter from "callbag-filter"
+import share from "callbag-share"
 import { Signal, Source } from "strict-callbag"
 import { createPipe } from "./createPipe"
+const startWith = require("callbag-start-with")
 
 export const groupBy_ =
   <A, E, K>(
@@ -8,9 +10,10 @@ export const groupBy_ =
     keyFn: (a: A) => K,
   ): Source<readonly [source: Source<A, E>, key: K], E> =>
   (_, sink) => {
+    const shared: Source<A, E> = (share as any)(self)
     const emitted = new Map<K, Source<A, E>>()
 
-    createPipe(self, sink, {
+    createPipe(shared, sink, {
       onStart: (tb) => {
         tb(Signal.DATA)
       },
@@ -18,9 +21,9 @@ export const groupBy_ =
         const key = keyFn(data)
 
         if (!emitted.has(key)) {
-          const inner: Source<A, E> = filter((a: A) => keyFn(a) === key)(
-            self as any,
-          ) as any
+          const inner: Source<A, E> = startWith(data)(
+            filter((a: A) => keyFn(a) === key)(shared as any) as any,
+          )
           emitted.set(key, inner)
           sink(Signal.DATA, [inner, key])
         }

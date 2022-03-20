@@ -107,14 +107,10 @@ const asyncImpl =
       )
 
     const talkback: Talkback<any> = (t) => {
-      switch (t) {
-        case Signal.DATA:
-          pump()
-          break
-
-        case Signal.END:
-          cleanup()
-          break
+      if (t === Signal.DATA) {
+        pump()
+      } else if (t === Signal.END) {
+        cleanup()
       }
     }
 
