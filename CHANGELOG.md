@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.9.0](https://github.com/tim-smart/callbag-effect-ts/compare/callbag-effect-ts@0.8.0...callbag-effect-ts@0.9.0) (2022-03-20)
+
+
+### Bug Fixes
+
+* chainPar ([d4ba315](https://github.com/tim-smart/callbag-effect-ts/commit/d4ba315774f5a70283f1e28ea7c3d4d337fa5526))
+
+
+### Features
+
+* groupBy operator ([d545cef](https://github.com/tim-smart/callbag-effect-ts/commit/d545cef31b00bd82e9b67c3fe5e4201bf26a122f))
+* start groupBy ([acc4308](https://github.com/tim-smart/callbag-effect-ts/commit/acc4308b2a0d87f98a07839194aa4dd1f9545dd5))
+
+
+
+
+
 # [0.8.0](https://github.com/tim-smart/callbag-effect-ts/compare/callbag-effect-ts@0.7.7...callbag-effect-ts@0.8.0) (2022-03-18)
 
 
