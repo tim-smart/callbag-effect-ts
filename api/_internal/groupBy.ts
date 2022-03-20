@@ -1,6 +1,6 @@
 import filter from "callbag-filter"
 import { Signal, Source } from "strict-callbag"
-import { createPipe } from "./pipe"
+import { createPipe } from "./createPipe"
 
 export const groupBy_ =
   <A, E, K>(

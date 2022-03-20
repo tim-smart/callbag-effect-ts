@@ -1,4 +1,5 @@
 import { Signal, Source, Talkback } from "strict-callbag"
+import { createPipe } from "./createPipe"
 
 const makeLB = <E, A>(
   onData: (a: A) => void,
@@ -7,7 +8,7 @@ const makeLB = <E, A>(
   onChildEnd: () => void,
 ) => {
   let parentEnded = false
-  let dataWanted = false
+  let waitingForTalkback = false
   let aborted = false
   let size = 0
 
@@ -28,7 +29,6 @@ const makeLB = <E, A>(
         localTalkback = data
         addTalkback(localTalkback)
       } else if (signal === Signal.DATA) {
-        dataWanted = false
         onData(data)
       } else if (signal === Signal.END) {
         if (data) {
@@ -43,8 +43,8 @@ const makeLB = <E, A>(
   const addTalkback = (tb: Talkback) => {
     talkbacks.push(tb)
 
-    if (dataWanted) {
-      dataWanted = false
+    if (waitingForTalkback) {
+      waitingForTalkback = false
       pull()
     }
   }
@@ -85,7 +85,7 @@ const makeLB = <E, A>(
   }
 
   const pull = () => {
-    dataWanted = true
+    waitingForTalkback = true
     if (!talkbacks.length) {
       return
     }
@@ -124,7 +124,6 @@ export const chainPar_ =
     )
 
     let talkback: Talkback
-    let sourceStarted = false
 
     function maybePullInner() {
       talkback !== undefined && lb.size() < maxInnerCount
@@ -132,34 +131,30 @@ export const chainPar_ =
         : undefined
     }
 
-    const startSelf = () =>
-      self(Signal.START, (signal, data) => {
-        if (signal === Signal.START) {
-          talkback = data
-          talkback(Signal.DATA)
-        } else if (signal === Signal.DATA) {
-          const inner = fab(data)
-          lb.add(inner)
-          maybePullInner()
-        } else {
-          if (data) {
-            lb.error(data)
-          } else {
-            lb.end()
-          }
-        }
-      })
-
-    sink(Signal.START, (signal) => {
-      if (signal === Signal.DATA) {
-        if (!sourceStarted) {
-          sourceStarted = true
-          startSelf()
-        }
-
+    createPipe(self, sink, {
+      onStart(tb) {
+        talkback = tb
+        tb(Signal.DATA)
         lb.pull()
-      } else if (signal === Signal.END) {
+      },
+      onData(_, data) {
+        const inner = fab(data)
+        lb.add(inner)
+        maybePullInner()
+      },
+      onEnd(_, err) {
+        if (err) {
+          lb.error(err)
+        } else {
+          lb.end()
+        }
+      },
+
+      onRequest() {
+        lb.pull()
+      },
+      onAbort() {
         lb.abort()
-      }
+      },
     })
   }
