@@ -1,6 +1,6 @@
 // ets_tracing: off
 import { EffectSource } from "../types"
-import * as SwitchMap from "./_internal/switchMap"
+import * as CB from "strict-callbag-basics"
 
 export const switchMap_ =
   <R, R1, E, E1, A, B>(
@@ -8,7 +8,7 @@ export const switchMap_ =
     fab: (a: A) => EffectSource<R1, E1, B>,
   ): EffectSource<R & R1, E | E1, B> =>
   (r) =>
-    SwitchMap.switchMap_(self(r), (a) => fab(a)(r))
+    CB.switchMap_(self(r), (a) => fab(a)(r))
 
 /**
  * @ets_data_first switchMap_

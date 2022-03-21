@@ -1,6 +1,6 @@
 // ets_tracing: off
 import { EffectSource } from "../types"
-import * as CP from "./_internal/chainPar"
+import * as CB from "strict-callbag-basics"
 
 export const chainPar_ =
   <R, R1, E, E1, A, B>(
@@ -9,7 +9,7 @@ export const chainPar_ =
     maxConcurrency = Infinity,
   ): EffectSource<R & R1, E | E1, B> =>
   (r) =>
-    CP.chainPar_(self(r), (a) => fab(a)(r), maxConcurrency)
+    CB.chainPar_(self(r), (a) => fab(a)(r), maxConcurrency)
 
 /**
  * @ets_data_first chainPar_
