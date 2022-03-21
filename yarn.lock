@@ -4070,9 +4070,9 @@ strict-callbag-basics@^0.3.0:
     strict-callbag "^0.9.0"
 
 strict-callbag@^0.9.0:
-  version "0.9.0"
-  resolved "https://registry.yarnpkg.com/strict-callbag/-/strict-callbag-0.9.0.tgz#37e51131e355fec8067c4184f638d0aef22466b8"
-  integrity sha512-pXVfGvGmTLLUMMyODqkAaw9o5kWHJX1bhSx7HYcAu6LQXhwNdB6RddvWjw9Z5DQrPBxJDrm5nRZwrYD19dIabA==
+  version "0.9.1"
+  resolved "https://registry.yarnpkg.com/strict-callbag/-/strict-callbag-0.9.1.tgz#aef2fccff937712c877ee45b77413a5f58ce4192"
+  integrity sha512-m0rTLzf4sFkIobAGDPsfeO3WQNMMHxjN2zq9706nd2kjFu51hzNFuI1EbHXAfw43oX+IEohoNYZyPxVJyWdMJw==
 
 strict-uri-encode@^2.0.0:
   version "2.0.0"
