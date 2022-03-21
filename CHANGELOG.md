@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.9.1](https://github.com/tim-smart/callbag-effect-ts/compare/callbag-effect-ts@0.9.0...callbag-effect-ts@0.9.1) (2022-03-21)
+
+
+### Bug Fixes
+
+* add callbag-start-with declaration ([9a6a07a](https://github.com/tim-smart/callbag-effect-ts/commit/9a6a07aad7349414ed91eb52f9dce55de3e661b0))
+
+
+
+
+
 # [0.9.0](https://github.com/tim-smart/callbag-effect-ts/compare/callbag-effect-ts@0.8.0...callbag-effect-ts@0.9.0) (2022-03-20)
 
 
