@@ -35,22 +35,22 @@
   dependencies:
     "@cspotcode/source-map-consumer" "0.8.0"
 
-"@effect-ts/core@^0.58.0":
-  version "0.58.1"
-  resolved "https://registry.yarnpkg.com/@effect-ts/core/-/core-0.58.1.tgz#9ddb527c8b19501cb1f12bda23c16af722258964"
-  integrity sha512-N0UwVyg+cx7FMG2zFh7uzpkyOk7iGYhiBfVN1K5MqpVXZzLvbuR9yud3SveaIxD0dJnso4AnPzrw6zhctNO+1A==
+"@effect-ts/core@^0.59.0":
+  version "0.59.0"
+  resolved "https://registry.yarnpkg.com/@effect-ts/core/-/core-0.59.0.tgz#29f74dd49a49f196039cbf0657709c9ae8770726"
+  integrity sha512-Sil/a6xzFtnQbWlV0SrvKvgaJIxF2FKGtuhd5Vn2hFxBHG/tr4wFg//T0jfFoYi68S1qJ9Y0VOFtFI+OScFLaA==
   dependencies:
-    "@effect-ts/system" "^0.55.1"
+    "@effect-ts/system" "^0.56.0"
 
 "@effect-ts/node@^0.38.3":
   version "0.38.3"
   resolved "https://registry.yarnpkg.com/@effect-ts/node/-/node-0.38.3.tgz#d91558efa94fa3d5dc75a3d516424af74d297949"
   integrity sha512-6+N1oNyp/IMmAstOiZWELCxdd+6jT2vJi1kK23Oj7Pig0suumDNh59AfbZwfX/+JcSScbD1qiIK5gSUN6C9Jow==
 
-"@effect-ts/system@^0.55.1":
-  version "0.55.1"
-  resolved "https://registry.yarnpkg.com/@effect-ts/system/-/system-0.55.1.tgz#fe157e7639ff6b05a51b62379961662569da98fb"
-  integrity sha512-OEnwd9JhrV2Q5S7cke/ZgR56Hn75DSr1aIkA0PBE1edoX6GKB6nOdu8u/vPhvqjxLHfMgN8o+EVaWUHPLIC1UQ==
+"@effect-ts/system@^0.56.0":
+  version "0.56.0"
+  resolved "https://registry.yarnpkg.com/@effect-ts/system/-/system-0.56.0.tgz#f5e2f7fcfe55f1fc2ccb54d2c4939e6de210465a"
+  integrity sha512-+k6BtQ/TZmMTC7JQkBl/KsjvcLpv7W1+PFGnkyiBi0Do13QD+pDI1gd9ZKPXTbKvTZPjudLxuf9Bfx19IRhnLg==
 
 "@effect-ts/tracing-plugin@^0.19.1":
   version "0.19.1"
@@ -4055,10 +4055,10 @@ ssri@^8.0.0, ssri@^8.0.1:
   dependencies:
     minipass "^3.1.1"
 
-strict-callbag-basics@^0.3.0:
-  version "0.3.0"
-  resolved "https://registry.yarnpkg.com/strict-callbag-basics/-/strict-callbag-basics-0.3.0.tgz#55c9e09ea46584e843812371a376c89660df1d84"
-  integrity sha512-L5jm6IHpyIZgWKZZDFYHSq6nOvLQ5SImkjDsa3XuxqvY3PnFuSnJF0Rkii62ZGHpEo7aDf+6v3RkRB9oUm/qcg==
+strict-callbag-basics@^0.4.0:
+  version "0.4.0"
+  resolved "https://registry.yarnpkg.com/strict-callbag-basics/-/strict-callbag-basics-0.4.0.tgz#b869ccfa5a32059b8a3bd9725b11725b0e342789"
+  integrity sha512-Lg9lmd90Q+SGTiQUAjDhN7mjS9xJ8+J3W14nFziukFRyBRK/2eIYDC+mc5Snp8oYyHclhhYTRGYfH/5pbi88GA==
   dependencies:
     callbag-filter "^1.1.0"
     callbag-flatten "^1.7.0"

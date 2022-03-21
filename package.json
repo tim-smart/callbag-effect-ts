@@ -34,8 +34,8 @@
     "typescript": "^4.6.2"
   },
   "dependencies": {
-    "@effect-ts/core": "^0.58.0",
+    "@effect-ts/core": "^0.59.0",
     "strict-callbag": "^0.9.0",
-    "strict-callbag-basics": "^0.3.0"
+    "strict-callbag-basics": "^0.4.0"
   }
 }
