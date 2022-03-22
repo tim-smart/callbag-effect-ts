@@ -43,10 +43,10 @@ const program = pipe(
   ),
   M.map((r) =>
     CB.async<unknown, Error, number>((emit) => {
-      emit.single(r.getCount())
-      emit.single(r.getCount())
-      setTimeout(() => emit.single(r.getCount()), 1000)
-      setTimeout(() => emit.single(r.getCount()), 2000)
+      emit.data(r.getCount())
+      emit.data(r.getCount())
+      setTimeout(() => emit.data(r.getCount()), 1000)
+      setTimeout(() => emit.data(r.getCount()), 2000)
       setTimeout(() => emit.end(), 2000)
     }),
   ),
