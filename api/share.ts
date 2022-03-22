@@ -1,4 +1,4 @@
-import cbShare from "callbag-share"
+import * as CB from "strict-callbag-basics"
 import { EffectSource } from "../types"
 
 export const share = <R, E, A>(
@@ -10,7 +10,7 @@ export const share = <R, E, A>(
     const value = cache.get(r.env)
     if (value) return value
 
-    const source = cbShare(self(r) as any)
+    const source = CB.share(self(r))
     cache.set(r.env, source)
     return source
   }

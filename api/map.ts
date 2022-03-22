@@ -1,5 +1,5 @@
 // ets_tracing: off
-import cbMap from "callbag-map"
+import * as CB from "strict-callbag-basics"
 import { EffectSource } from "../types"
 
 export const map_ =
@@ -8,7 +8,7 @@ export const map_ =
     fab: (a: A) => B,
   ): EffectSource<R, E, B> =>
   (r) =>
-    cbMap(fab)(self(r) as any) as any
+    CB.map_(self(r), fab)
 
 /**
  * @ets_data_first map_

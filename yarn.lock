@@ -4055,10 +4055,10 @@ ssri@^8.0.0, ssri@^8.0.1:
   dependencies:
     minipass "^3.1.1"
 
-strict-callbag-basics@^0.4.0:
-  version "0.4.0"
-  resolved "https://registry.yarnpkg.com/strict-callbag-basics/-/strict-callbag-basics-0.4.0.tgz#b869ccfa5a32059b8a3bd9725b11725b0e342789"
-  integrity sha512-Lg9lmd90Q+SGTiQUAjDhN7mjS9xJ8+J3W14nFziukFRyBRK/2eIYDC+mc5Snp8oYyHclhhYTRGYfH/5pbi88GA==
+strict-callbag-basics@^0.5.0:
+  version "0.5.0"
+  resolved "https://registry.yarnpkg.com/strict-callbag-basics/-/strict-callbag-basics-0.5.0.tgz#2942a276b92a8cecb641833726dd2325b0f602b8"
+  integrity sha512-IreFGwuR8VwJgBEZjP8M0JcLpnduil3pjIqj+kHrTzOhpYa2TiOZzhCuXO53CqlO5XcOihXpKmFD/E/qtSU8Og==
   dependencies:
     callbag-filter "^1.1.0"
     callbag-flatten "^1.7.0"
