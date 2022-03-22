@@ -1,6 +1,8 @@
 // ets_tracing: off
+import * as CB from "strict-callbag-basics"
 import { EffectSource } from "../types"
-import { fromIterable } from "./fromIterable"
 
-export const of = <A>(value: A): EffectSource<unknown, never, A> =>
-  fromIterable([value])
+export const of =
+  <A>(...as: A[]): EffectSource<unknown, never, A> =>
+  (_) =>
+    CB.of(...as)

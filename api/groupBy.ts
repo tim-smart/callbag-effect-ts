@@ -7,10 +7,14 @@ import { CustomRuntime } from "@effect-ts/core/Effect"
 export const groupBy_ = <R, E, A, K>(
   self: EffectSource<R, E, A>,
   keyFn: (a: A) => K,
-): EffectSource<R, E, readonly [source: EffectSource<R, E, A>, key: K]> =>
+): EffectSource<
+  R,
+  E,
+  readonly [source: EffectSource<R, E, A>, key: K, data: A]
+> =>
   pipe(
     (r: CustomRuntime<R, unknown>) => CB.groupBy_(self(r), keyFn),
-    map(([source, key]) => [(_) => source, key] as const),
+    map(([source, key, data]) => [(_) => source, key, data] as const),
   )
 
 /**
@@ -18,7 +22,5 @@ export const groupBy_ = <R, E, A, K>(
  */
 export const groupBy =
   <A, K>(keyFn: (a: A) => K) =>
-  <R, E>(
-    self: EffectSource<R, E, A>,
-  ): EffectSource<R, E, readonly [source: EffectSource<R, E, A>, key: K]> =>
+  <R, E>(self: EffectSource<R, E, A>) =>
     groupBy_(self, keyFn)

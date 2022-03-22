@@ -1,6 +1,6 @@
 // ets_tracing: off
 import * as C from "@effect-ts/core/Effect/Cause"
-import { Signal } from "strict-callbag"
+import * as CB from "strict-callbag-basics"
 import { EffectSource } from "../types"
 
 export const mapErrorCause_ =
@@ -9,15 +9,7 @@ export const mapErrorCause_ =
     f: (e: C.Cause<E>) => C.Cause<E1>,
   ): EffectSource<R, E1, A> =>
   (r) =>
-  (_, sink) => {
-    self(r)(Signal.START, (t, d) => {
-      if (t === Signal.END && d) {
-        sink(t, f(d))
-      } else {
-        sink(t, d as any)
-      }
-    })
-  }
+    CB.mapError_(self(r), f)
 
 /**
  * @ets_data_first mapErrorCause_
