@@ -40,3 +40,18 @@ export const async =
   <R, E, A>(register: Register<E, A>, bufferSize = 16): EffectSource<R, E, A> =>
   (r) =>
     CB.buffer_(asyncPush(register)(r), bufferSize)
+
+export const asyncEmitterPush = <R, E, A>(): readonly [
+  AsyncEmitter<E, A>,
+  EffectSource<R, E, A>,
+] => {
+  const [emitter, source] = CB.asyncEmitter<A, Cause.Cause<E>>()
+  return [createEmit(emitter), () => source]
+}
+
+export const asyncEmitter = <R, E, A>(
+  bufferSize = 16,
+): readonly [AsyncEmitter<E, A>, EffectSource<R, E, A>] => {
+  const [emitter, source] = CB.asyncEmitter<A, Cause.Cause<E>>()
+  return [createEmit(emitter), () => CB.buffer_(source, bufferSize)]
+}
