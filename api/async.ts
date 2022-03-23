@@ -12,7 +12,9 @@ export interface AsyncEmitter<E, A> {
   end: () => void
 }
 
-type Register<E, A> = (emitter: AsyncEmitter<E, A>) => void
+type Cleanup = () => void
+
+type Register<E, A> = (emitter: AsyncEmitter<E, A>) => Cleanup | void
 
 const createEmit = <E, A>(
   emit: CB.AsyncEmitter<Cause.Cause<E>, A>,
