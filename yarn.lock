@@ -4089,9 +4089,9 @@ ssri@^8.0.0, ssri@^8.0.1:
     minipass "^3.1.1"
 
 strict-callbag-basics@^0.16.0:
-  version "0.16.0"
-  resolved "https://registry.yarnpkg.com/strict-callbag-basics/-/strict-callbag-basics-0.16.0.tgz#7231d9735478018e8b761fe31481410b33556008"
-  integrity sha512-Peg4eBm7gUkrTcD34792jwXAmzJfzCaG2kNeZ99N1LigSNyNGS5n2HeCX1wNbtKelm+MslVJCznMf5fsigpxlQ==
+  version "0.16.1"
+  resolved "https://registry.yarnpkg.com/strict-callbag-basics/-/strict-callbag-basics-0.16.1.tgz#1b7f3997a5b35829f9e0ba776633d8f77942fec3"
+  integrity sha512-UmW+MYYQ/l3DKciOdjxcKecRXXfjWMhEqS94yxW1APyGeACWSGxEqxm9b03ECL38/EeEUgYtSWioqnRbxuYB+A==
   dependencies:
     callbag-concat "^1.2.1"
     callbag-filter "^1.1.0"
