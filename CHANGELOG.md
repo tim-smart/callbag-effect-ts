@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.11.1](https://github.com/tim-smart/callbag-effect-ts/compare/callbag-effect-ts@0.11.0...callbag-effect-ts@0.11.1) (2022-04-01)
+
+
+### Bug Fixes
+
+* export resource factory ([bd3eb8d](https://github.com/tim-smart/callbag-effect-ts/commit/bd3eb8d688cf0966dbc8b248d318e2a2ade8ad89))
+
+
+
+
+
 # [0.11.0](https://github.com/tim-smart/callbag-effect-ts/compare/callbag-effect-ts@0.10.5...callbag-effect-ts@0.11.0) (2022-04-01)
 
 
