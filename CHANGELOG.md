@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.11.0](https://github.com/tim-smart/callbag-effect-ts/compare/callbag-effect-ts@0.10.5...callbag-effect-ts@0.11.0) (2022-04-01)
+
+
+### Features
+
+* add resource factory ([d60962e](https://github.com/tim-smart/callbag-effect-ts/commit/d60962eff803da3fa13f38f718219f68780903fc))
+
+
+
+
+
 ## [0.10.5](https://github.com/tim-smart/callbag-effect-ts/compare/callbag-effect-ts@0.10.4...callbag-effect-ts@0.10.5) (2022-04-01)
 
 **Note:** Version bump only for package callbag-effect-ts
