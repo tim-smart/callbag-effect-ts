@@ -1,10 +1,10 @@
+import * as T from "@effect-ts/core/Effect"
 import * as L from "@effect-ts/core/Effect/Layer"
 import * as M from "@effect-ts/core/Effect/Managed"
-import * as T from "@effect-ts/core/Effect"
 import { pipe } from "@effect-ts/core/Function"
+import { tag } from "@effect-ts/core/Has"
 import { runMain } from "@effect-ts/node/Runtime"
 import * as CB from "../"
-import { tag } from "@effect-ts/core/Has"
 
 // Some services
 type Error = { _tag: "Fail" }
@@ -42,7 +42,9 @@ const program = pipe(
     }),
   ),
   M.map((r) =>
-    CB.async<Error, number>((emit) => {
+    CB.async<Error, number>((sink) => {
+      const emit = CB.emitter(sink)
+
       emit.data(r.getCount())
       emit.data(r.getCount())
       setTimeout(() => emit.data(r.getCount()), 1000)

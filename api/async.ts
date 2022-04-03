@@ -1,42 +1,17 @@
 // ets_tracing: off
 import * as Cause from "@effect-ts/core/Effect/Cause"
-import { Exit } from "@effect-ts/core/Effect/Exit"
 import * as CB from "strict-callbag-basics"
-import { EffectSource } from "../types"
-
-export interface AsyncEmitter<E, A> {
-  data: (data: A) => void
-  fail: (error: E) => void
-  halt: (cause: Cause.Cause<E>) => void
-  done: (exit: Exit<E, A>) => void
-  end: () => void
-}
+import { EffectSink, EffectSource } from "../types"
+import { Emitter, emitter } from "./emitter"
 
 type Cleanup = () => void
 
-type Register<E, A> = (emitter: AsyncEmitter<E, A>) => Cleanup | void
-
-const createEmit = <E, A>(
-  emit: CB.AsyncEmitter<Cause.Cause<E>, A>,
-): AsyncEmitter<E, A> => ({
-  data: emit.data,
-  end: emit.end,
-  halt: emit.error,
-  fail: (e) => emit.error(Cause.fail(e)),
-  done: (exit) => {
-    if (exit._tag === "Failure") {
-      return emit.error(exit.cause)
-    }
-
-    emit.data(exit.value)
-    emit.end()
-  },
-})
+type Register<E, A> = (sink: EffectSink<unknown, E, never, A>) => Cleanup | void
 
 export const asyncPush =
   <E, A>(register: Register<E, A>): EffectSource<unknown, E, A> =>
   (_) =>
-    CB.async((emit) => register(createEmit(emit)))
+    CB.async((sink) => register((_) => sink))
 
 export const async =
   <E, A>(
@@ -47,16 +22,24 @@ export const async =
     CB.buffer_(asyncPush(register)(r), bufferSize)
 
 export const asyncEmitterPush = <E, A>(): readonly [
-  AsyncEmitter<E, A>,
+  Emitter<E, A>,
   EffectSource<unknown, E, A>,
 ] => {
-  const [emitter, source] = CB.asyncEmitter<A, Cause.Cause<E>>()
-  return [createEmit(emitter), () => source]
+  const [sink, source] = CB.asyncSink<A, Cause.Cause<E>>()
+  return [emitter(() => sink), () => source]
 }
 
 export const asyncEmitter = <E, A>(
   bufferSize = 16,
-): readonly [AsyncEmitter<E, A>, EffectSource<unknown, E, A>] => {
-  const [emitter, source] = CB.asyncEmitter<A, Cause.Cause<E>>()
-  return [createEmit(emitter), () => CB.buffer_(source, bufferSize)]
+): readonly [Emitter<E, A>, EffectSource<unknown, E, A>] => {
+  const [sink, source] = CB.asyncSink<A, Cause.Cause<E>>()
+  return [emitter(() => sink), () => CB.buffer_(source, bufferSize)]
+}
+
+export const asyncSync = <E, A>(): readonly [
+  EffectSink<unknown, E, never, A>,
+  EffectSource<unknown, E, A>,
+] => {
+  const [sink, source] = CB.asyncSink<A, Cause.Cause<E>>()
+  return [(_) => sink, () => source]
 }
