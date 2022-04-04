@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.12.0](https://github.com/tim-smart/callbag-effect-ts/compare/callbag-effect-ts@0.11.2...callbag-effect-ts@0.12.0) (2022-04-04)
+
+
+### Features
+
+* use emitter in async again ([055a95a](https://github.com/tim-smart/callbag-effect-ts/commit/055a95a0ed0b095b362d69c39dc1d8b2a7ff1e5a))
+
+
+
+
+
 ## [0.11.2](https://github.com/tim-smart/callbag-effect-ts/compare/callbag-effect-ts@0.11.1...callbag-effect-ts@0.11.2) (2022-04-01)
 
 **Note:** Version bump only for package callbag-effect-ts
