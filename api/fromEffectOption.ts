@@ -28,7 +28,7 @@ export const fromEffectOption =
       } else if (signal === Signal.END) {
         aborted = true
         if (cancel) {
-          r.run(cancel)
+          r.runFiber(cancel)
         }
       }
     })

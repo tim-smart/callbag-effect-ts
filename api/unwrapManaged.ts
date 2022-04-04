@@ -49,7 +49,7 @@ export const unwrapManaged =
           },
         )
       } else if (signal === Signal.END) {
-        if (cancel) r.run(cancel)
+        if (cancel) r.runFiber(cancel)
       }
     })
   }
