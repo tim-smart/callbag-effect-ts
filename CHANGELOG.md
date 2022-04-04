@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.14.0](https://github.com/tim-smart/callbag-effect-ts/compare/callbag-effect-ts@0.13.0...callbag-effect-ts@0.14.0) (2022-04-04)
+
+
+### Features
+
+* map for EffectSink ([9778355](https://github.com/tim-smart/callbag-effect-ts/commit/9778355b829bb49c761524dc63521ffc9db04f2f))
+
+
+
+
+
 # [0.13.0](https://github.com/tim-smart/callbag-effect-ts/compare/callbag-effect-ts@0.12.1...callbag-effect-ts@0.13.0) (2022-04-04)
 
 
