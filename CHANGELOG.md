@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.15.0](https://github.com/tim-smart/callbag-effect-ts/compare/callbag-effect-ts@0.14.0...callbag-effect-ts@0.15.0) (2022-04-04)
+
+
+### Features
+
+* forEach sink ([587fce5](https://github.com/tim-smart/callbag-effect-ts/commit/587fce5f420ccf4f9cac0041108c1dcea861c8f6))
+
+
+
+
+
 # [0.14.0](https://github.com/tim-smart/callbag-effect-ts/compare/callbag-effect-ts@0.13.0...callbag-effect-ts@0.14.0) (2022-04-04)
 
 
