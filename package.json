@@ -35,7 +35,7 @@
   },
   "dependencies": {
     "@effect-ts/core": "^0.59.0",
-    "strict-callbag-basics": "^0.18.1"
+    "strict-callbag-basics": "^0.19.0"
   },
   "gitHead": "3db152a786ee45d44b771c9be72a23f55e39bd76"
 }
