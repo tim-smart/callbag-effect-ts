@@ -1,8 +1,7 @@
 // ets_tracing: off
 import * as Cause from "@effect-ts/core/Effect/Cause"
 import * as CB from "strict-callbag-basics"
-import { Sink } from "strict-callbag-basics"
-import { EffectSource } from "../types"
+import { EffectSink, EffectSource } from "../types"
 import { Emitter, emitter } from "./emitter"
 
 type Cleanup = () => void
@@ -38,9 +37,9 @@ export const asyncEmitter = <E, A>(
 }
 
 export const asyncSink = <E, A>(): readonly [
-  Sink<A, Cause.Cause<E>>,
+  EffectSink<unknown, E, never, A>,
   EffectSource<unknown, E, A>,
 ] => {
   const [sink, source] = CB.asyncSink<A, Cause.Cause<E>>()
-  return [sink, () => source]
+  return [() => sink, () => source]
 }
