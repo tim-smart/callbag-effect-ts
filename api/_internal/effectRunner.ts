@@ -26,7 +26,7 @@ export const make = <R, E>(
     resetEffects()
 
     if (currentCancel) {
-      r.run(currentCancel)
+      r.runFiber(currentCancel)
     }
 
     if (cleanup) {
