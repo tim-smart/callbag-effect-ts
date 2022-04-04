@@ -42,9 +42,7 @@ const program = pipe(
     }),
   ),
   M.map((r) =>
-    CB.async<Error, number>((sink) => {
-      const emit = CB.emitter(sink)
-
+    CB.async<Error, number>((emit) => {
       emit.data(r.getCount())
       emit.data(r.getCount())
       setTimeout(() => emit.data(r.getCount()), 1000)
