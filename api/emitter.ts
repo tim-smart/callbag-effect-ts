@@ -1,7 +1,7 @@
 // ets_tracing: off
 import * as Cause from "@effect-ts/core/Effect/Cause"
 import { Exit } from "@effect-ts/core/Effect/Exit"
-import { EffectSink } from "../types"
+import { Sink } from "strict-callbag-basics"
 
 export interface Emitter<E, A> {
   data: (data: A) => void
@@ -12,10 +12,8 @@ export interface Emitter<E, A> {
 }
 
 export const emitter = <E, A>(
-  effectSink: EffectSink<unknown, E, never, A>,
+  sink: Sink<A, Cause.Cause<E>, never>,
 ): Emitter<E, A> => {
-  const sink = effectSink(undefined as any)
-
   return {
     data: (a) => sink(1, a),
     end: () => sink(2, undefined),
