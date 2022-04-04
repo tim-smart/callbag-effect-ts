@@ -1,15 +1,5 @@
-import { Signal, Talkback } from "strict-callbag"
+import * as CBS from "strict-callbag-basics/Sink"
 import { EffectSink } from "../types"
 
-export const noop: EffectSink<unknown, unknown, never, unknown> = (_) => {
-  let talkback: Talkback
-
-  return (signal, data) => {
-    if (signal === Signal.START) {
-      talkback = data
-      talkback(Signal.DATA)
-    } else if (signal === Signal.DATA) {
-      talkback(Signal.DATA)
-    }
-  }
-}
+export const noop: EffectSink<unknown, unknown, never, unknown> = (_) =>
+  CBS.noop

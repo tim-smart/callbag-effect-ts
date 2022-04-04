@@ -4108,10 +4108,10 @@ ssri@^8.0.0, ssri@^8.0.1:
   dependencies:
     minipass "^3.1.1"
 
-strict-callbag-basics@^0.19.0:
-  version "0.19.0"
-  resolved "https://registry.yarnpkg.com/strict-callbag-basics/-/strict-callbag-basics-0.19.0.tgz#2c44d542f35db1beea13fd3835dadfef0f10af9d"
-  integrity sha512-MUNmJoDbxQylSuGiimeH1QWCeO1zzEqFbE0Hg4CxKhHZ6ukBeEH5MJlAx8w3Q79iOoTlxWgdns2UJfZxdiA63g==
+strict-callbag-basics@^0.20.0:
+  version "0.20.0"
+  resolved "https://registry.yarnpkg.com/strict-callbag-basics/-/strict-callbag-basics-0.20.0.tgz#bc34cca7ef69394c895ae1f6f50723a40f356278"
+  integrity sha512-TJb3+joIAIpbmaHkAJliTMLPqsud+lA+ol4Vza3UXKmoxTkX2zwXcoGmNq3KwShtB+VQAEIGWGXsTtwAdDpREA==
   dependencies:
     callbag-buffer "^1.0.0"
     callbag-buffer-time "^1.0.0"
