@@ -34,7 +34,7 @@ export const asyncEmitter = <E, A>(
   bufferSize = 16,
 ): readonly [Emitter<E, A>, EffectSource<unknown, E, A>] => {
   const [sink, source] = CB.asyncSink<A, Cause.Cause<E>>()
-  return [emitter(() => sink), () => CB.buffer_(source, bufferSize)]
+  return [emitter(sink), () => CB.buffer_(source, bufferSize)]
 }
 
 export const asyncSink = <E, A>(): readonly [
