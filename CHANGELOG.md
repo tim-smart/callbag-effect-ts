@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.12.1](https://github.com/tim-smart/callbag-effect-ts/compare/callbag-effect-ts@0.12.0...callbag-effect-ts@0.12.1) (2022-04-04)
+
+
+### Bug Fixes
+
+* asyncEmitter not returning real sink ([83067b9](https://github.com/tim-smart/callbag-effect-ts/commit/83067b93c1b6f1448e0794f0a6935d2be0926dcd))
+
+
+
+
+
 # [0.12.0](https://github.com/tim-smart/callbag-effect-ts/compare/callbag-effect-ts@0.11.2...callbag-effect-ts@0.12.0) (2022-04-04)
 
 
