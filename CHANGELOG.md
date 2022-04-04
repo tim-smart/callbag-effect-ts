@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.13.0](https://github.com/tim-smart/callbag-effect-ts/compare/callbag-effect-ts@0.12.1...callbag-effect-ts@0.13.0) (2022-04-04)
+
+
+### Code Refactoring
+
+* asyncSink returns an EffectSink ([a14d2ad](https://github.com/tim-smart/callbag-effect-ts/commit/a14d2ad82ce6eff5fc78e37ed94e153c353c64e5))
+
+
+### BREAKING CHANGES
+
+* asyncSink returns an EffectSink instead of a Sink
+
+
+
+
+
 ## [0.12.1](https://github.com/tim-smart/callbag-effect-ts/compare/callbag-effect-ts@0.12.0...callbag-effect-ts@0.12.1) (2022-04-04)
 
 
