@@ -2,6 +2,11 @@
 import { EffectSource } from "../types"
 import * as CB from "strict-callbag-basics"
 
+export const mergeIdentical =
+  <R, E, A>(...sources: EffectSource<R, E, A>[]): EffectSource<R, E, A> =>
+  (r) =>
+    CB.mergeIdentical(...sources.map((s) => s(r)))
+
 export const merge_ =
   <R, R1, E, E1, A, B>(
     self: EffectSource<R, E, A>,
