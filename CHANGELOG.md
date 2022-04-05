@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.16.0](https://github.com/tim-smart/callbag-effect-ts/compare/callbag-effect-ts@0.15.1...callbag-effect-ts@0.16.0) (2022-04-05)
+
+
+### Features
+
+* mergeIdentical ([55d8703](https://github.com/tim-smart/callbag-effect-ts/commit/55d8703889946b305ce1861b7ce678c0f6fc950d))
+
+
+
+
+
 ## [0.15.1](https://github.com/tim-smart/callbag-effect-ts/compare/callbag-effect-ts@0.15.0...callbag-effect-ts@0.15.1) (2022-04-05)
 
 
