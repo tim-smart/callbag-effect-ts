@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.15.1](https://github.com/tim-smart/callbag-effect-ts/compare/callbag-effect-ts@0.15.0...callbag-effect-ts@0.15.1) (2022-04-05)
+
+
+### Bug Fixes
+
+* noop sink ([acb2f67](https://github.com/tim-smart/callbag-effect-ts/commit/acb2f6776d318c2311b3694a7bd433a9e7421959))
+
+
+
+
+
 # [0.15.0](https://github.com/tim-smart/callbag-effect-ts/compare/callbag-effect-ts@0.14.0...callbag-effect-ts@0.15.0) (2022-04-04)
 
 
