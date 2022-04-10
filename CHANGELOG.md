@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.17.0](https://github.com/tim-smart/callbag-effect-ts/compare/callbag-effect-ts@0.16.6...callbag-effect-ts@0.17.0) (2022-04-10)
+
+
+### Features
+
+* overridePull ([b205fa9](https://github.com/tim-smart/callbag-effect-ts/commit/b205fa9221eb5164b41c64fb8303db07f0d2243e))
+
+
+
+
+
 ## [0.16.6](https://github.com/tim-smart/callbag-effect-ts/compare/callbag-effect-ts@0.16.5...callbag-effect-ts@0.16.6) (2022-04-10)
 
 **Note:** Version bump only for package callbag-effect-ts
