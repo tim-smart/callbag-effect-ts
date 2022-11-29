@@ -1,5 +1,5 @@
 // ets_tracing: off
-import * as T from "@effect-ts/core/Effect"
+import * as T from "@effect/io/Effect"
 import * as FE from "../Sink/forEach"
 import { EffectSource } from "../types"
 import { run_ } from "./run"

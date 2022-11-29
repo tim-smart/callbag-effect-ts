@@ -1,6 +1,6 @@
 // ets_tracing: off
-import * as Cause from "@effect-ts/core/Effect/Cause"
-import { Exit } from "@effect-ts/core/Effect/Exit"
+import * as Cause from "@effect/io/Cause"
+import { Exit, isFailure } from "@effect/io/Exit"
 import { Sink } from "strict-callbag-basics"
 import { EffectSink } from "../types"
 
@@ -20,7 +20,7 @@ export const emitter = <E, A>(
   halt: (c) => sink(2, c),
   fail: (e) => sink(2, Cause.fail(e)),
   done: (exit) => {
-    if (exit._tag === "Failure") {
+    if (isFailure(exit)) {
       return sink(2, exit.cause)
     }
 

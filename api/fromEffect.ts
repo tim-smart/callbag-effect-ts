@@ -1,7 +1,6 @@
-// ets_tracing: off
-import * as T from "@effect-ts/core/Effect"
-import { pipe } from "@effect-ts/core/Function"
-import * as O from "@effect-ts/core/Option"
+import * as T from "@effect/io/Effect"
+import * as O from "@fp-ts/data/Option"
+import { pipe } from "strict-callbag-basics"
 import { EffectSource } from "../types"
 import { fromEffectOption } from "./fromEffectOption"
 

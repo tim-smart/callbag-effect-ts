@@ -1,5 +1,6 @@
-import * as T from "@effect-ts/core/Effect"
-import { Cause } from "@effect-ts/core/Effect/Cause"
+import { Cause } from "@effect/io/Cause"
+import * as T from "@effect/io/Effect"
+import * as Exit from "@effect/io/Exit"
 import { Signal, Talkback } from "strict-callbag-basics"
 import { EffectSink } from "../types"
 
@@ -13,8 +14,8 @@ export const forEach =
         talkback = data
         talkback(Signal.DATA)
       } else if (signal === Signal.DATA) {
-        r.run(f(data), (exit) => {
-          if (exit._tag === "Failure") {
+        r.unsafeRunAsyncWith(f(data), (exit) => {
+          if (Exit.isFailure(exit)) {
             talkback(Signal.END, exit.cause)
           } else {
             talkback(Signal.DATA)

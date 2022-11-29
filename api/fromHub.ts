@@ -1,9 +1,12 @@
-// ets_tracing: off
-import * as H from "@effect-ts/core/Effect/Hub"
-import * as M from "@effect-ts/core/Effect/Managed"
-import { pipe } from "@effect-ts/core/Function"
+import * as T from "@effect/io/Effect"
+import * as H from "@effect/io/Hub"
+import { pipe } from "strict-callbag-basics"
 import { fromQueue } from "./fromQueue"
-import { unwrapManaged } from "./unwrapManaged"
+import { unwrap } from "./unwrap"
 
-export const fromHub = <R, E, A>(hub: H.XHub<never, R, unknown, E, never, A>) =>
-  pipe(H.subscribe(hub), M.map(fromQueue), unwrapManaged)
+export const fromHub = <A>(hub: H.Hub<A>) =>
+  pipe(
+    H.subscribe(hub),
+    T.map((a) => fromQueue(a)),
+    unwrap,
+  )

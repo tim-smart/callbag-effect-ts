@@ -7,7 +7,7 @@ export const chainPar_ =
     self: EffectSource<R, E, A>,
     fab: (a: A) => EffectSource<R1, E1, B>,
     maxConcurrency = Infinity,
-  ): EffectSource<R & R1, E | E1, B> =>
+  ): EffectSource<R | R1, E | E1, B> =>
   (r) =>
     CB.chainPar_(self(r), (a) => fab(a)(r), maxConcurrency)
 
@@ -19,5 +19,5 @@ export const chainPar =
     fab: (a: A) => EffectSource<R1, E1, B>,
     maxConcurrency = Infinity,
   ) =>
-  <R, E>(fa: EffectSource<R, E, A>): EffectSource<R & R1, E | E1, B> =>
+  <R, E>(fa: EffectSource<R, E, A>): EffectSource<R | R1, E | E1, B> =>
     chainPar_(fa, fab, maxConcurrency)

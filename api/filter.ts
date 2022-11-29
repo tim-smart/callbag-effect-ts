@@ -1,4 +1,3 @@
-// ets_tracing: off
 import * as CB from "strict-callbag-basics"
 import { EffectSource } from "../types"
 
@@ -19,9 +18,6 @@ export function filter_<R, E, A>(
   return (r) => CB.filter_(self(r), pred)
 }
 
-/**
- * @ets_data_first filter_
- */
 export function filter<A, B extends A>(
   fab: (a: A) => a is B,
 ): <R, E>(source: EffectSource<R, E, A>) => EffectSource<R, E, B>

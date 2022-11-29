@@ -1,8 +1,8 @@
 import { EffectSource } from "../types"
 import * as CB from "strict-callbag-basics"
 import { map } from "./map"
-import { pipe } from "@effect-ts/core"
-import { CustomRuntime } from "@effect-ts/core/Effect"
+import { pipe } from "strict-callbag-basics"
+import { Runtime } from "@effect/io/Runtime"
 
 export const groupBy_ = <R, E, A, K>(
   self: EffectSource<R, E, A>,
@@ -13,7 +13,7 @@ export const groupBy_ = <R, E, A, K>(
   readonly [source: EffectSource<R, E, A>, key: K, data: A]
 > =>
   pipe(
-    (r: CustomRuntime<R, unknown>) => CB.groupBy_(self(r), keyFn),
+    (r: Runtime<R>) => CB.groupBy_(self(r), keyFn),
     map(([source, key, data]) => [(_) => source, key, data] as const),
   )
 

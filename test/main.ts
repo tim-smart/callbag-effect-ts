@@ -1,9 +1,7 @@
-import * as T from "@effect-ts/core/Effect"
-import * as L from "@effect-ts/core/Effect/Layer"
-import * as M from "@effect-ts/core/Effect/Managed"
-import { pipe } from "@effect-ts/core/Function"
-import { tag } from "@effect-ts/core/Has"
-import { runMain } from "@effect-ts/node/Runtime"
+import * as T from "@effect/io/Effect"
+import * as L from "@effect/io/Layer"
+import { Tag } from "@fp-ts/data/Context"
+import { pipe } from "strict-callbag-basics"
 import * as CB from "../"
 
 // Some services
@@ -22,26 +20,27 @@ const makeResource = () => ({
 })
 
 interface Resource extends ReturnType<typeof makeResource> {}
-const Resource = tag<Resource>()
-const LiveResource = L.fromFunction(Resource)(makeResource)
+const Resource = Tag<Resource>()
+const LiveResource = L.sync(Resource)(makeResource)
 
 const makeLogger = () => ({
-  log: (...args: any[]) => T.succeedWith(() => console.error(...args)),
+  log: (...args: any[]) => T.sync(() => console.error(...args)),
 })
 interface Logger extends ReturnType<typeof makeLogger> {}
-const Logger = tag<Logger>()
-const LiveLogger = L.fromFunction(Logger)(makeLogger)
-const log = (...args: any[]) => T.accessServiceM(Logger)((l) => l.log(...args))
+const Logger = Tag<Logger>()
+const LiveLogger = L.sync(Logger)(makeLogger)
+const log = (...args: any[]) =>
+  T.serviceWithEffect(Logger)((l) => l.log(...args))
 
 // program
 const program = pipe(
-  T.accessService(Resource)((r) => r),
-  M.makeExit((r) =>
-    T.succeedWith(() => {
+  T.acquireRelease(pipe(T.serviceWith(Resource)((r) => r)), (r) =>
+    T.sync(() => {
+      console.error("CLOSE")
       r.close()
     }),
   ),
-  M.map((r) =>
+  T.map((r) =>
     CB.async<Error, number>((emit) => {
       emit.data(r.getCount())
       emit.data(r.getCount())
@@ -50,7 +49,7 @@ const program = pipe(
       setTimeout(() => emit.end(), 2000)
     }),
   ),
-  CB.unwrapManaged,
+  CB.unwrap,
   CB.chainPar((i) => CB.of(i + 10)),
   CB.merge(CB.of(20)),
   CB.tap((i) => log("got", i)),
@@ -61,7 +60,8 @@ const program = pipe(
 
 pipe(
   program,
+  T.scoped,
   T.provideSomeLayer(LiveResource),
   T.provideSomeLayer(LiveLogger),
-  runMain,
-)
+  T.unsafeRunPromise,
+).catch(console.error)

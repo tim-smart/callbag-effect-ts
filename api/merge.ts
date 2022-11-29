@@ -11,7 +11,7 @@ export const merge_ =
   <R, R1, E, E1, A, B>(
     self: EffectSource<R, E, A>,
     fb: EffectSource<R1, E1, B>,
-  ): EffectSource<R & R1, E | E1, A | B> =>
+  ): EffectSource<R | R1, E | E1, A | B> =>
   (r) =>
     CB.merge_(self(r), fb(r))
 

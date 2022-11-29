@@ -1,10 +1,14 @@
 // ets_tracing: off
-import * as T from "@effect-ts/core/Effect"
-import { CustomRuntime } from "@effect-ts/core/Effect"
-import * as Cause from "@effect-ts/core/Effect/Cause"
+import * as T from "@effect/io/Effect"
+import * as Cause from "@effect/io/Cause"
+import * as Exit from "@effect/io/Exit"
+import { Runtime } from "@effect/io/Runtime"
+import * as FiberId from "@effect/io/Fiber/Id"
+
+type Cancel = ReturnType<typeof T.unsafeRunWith>
 
 export const make = <R, E>(
-  r: CustomRuntime<R, unknown>,
+  r: Runtime<R>,
   onFail: (cause: Cause.Cause<E>) => void,
   capacity = Infinity,
 ) => {
@@ -16,17 +20,17 @@ export const make = <R, E>(
     effectsOffset = 0
   }
 
-  let currentCancel: T.AsyncCancel<E, any> | undefined = undefined
+  let currentCancel: Cancel | undefined = undefined
 
   let aborted = false
 
-  const abort = (cleanup?: T.UIO<void>) => {
+  const abort = (cleanup?: T.Effect<never, never, void>) => {
     if (aborted) return
 
     resetEffects()
 
     if (currentCancel) {
-      r.runFiber(currentCancel)
+      currentCancel(FiberId.none)(() => {})
     }
 
     if (cleanup) {
@@ -47,11 +51,11 @@ export const make = <R, E>(
   }
 
   const runEffectImpl = (e: T.Effect<R, E, any>) => {
-    currentCancel = r.runCancel(e, (exit) => {
+    currentCancel = r.unsafeRunWith(e, (exit) => {
       currentCancel = undefined
 
       if (
-        exit._tag === "Failure" &&
+        Exit.isFailure(exit) &&
         !(exit.cause._tag === "Interrupt" && aborted)
       ) {
         onFail(exit.cause)

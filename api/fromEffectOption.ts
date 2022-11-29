@@ -1,22 +1,25 @@
-// ets_tracing: off
-import * as T from "@effect-ts/core/Effect"
-import * as O from "@effect-ts/core/Option"
-import { AsyncCancel } from "@effect-ts/core/Effect"
-import { EffectSource, Signal } from "../types"
+import * as T from "@effect/io/Effect"
+import { isSuccess } from "@effect/io/Exit"
+import { none } from "@effect/io/Fiber/Id"
+import * as O from "@fp-ts/data/Option"
+import { AsyncCancel, EffectSource, Signal } from "../types"
 
 export const fromEffectOption =
   <R, E, A>(fa: T.Effect<R, E, O.Option<A>>): EffectSource<R, E, A> =>
   (r) =>
   (_, sink) => {
     let aborted = false
-    let cancel: AsyncCancel<E, O.Option<A>>
+    let running = false
+    let cancel: AsyncCancel
 
     sink(Signal.START, (signal) => {
       if (signal === Signal.DATA) {
-        cancel ??= r.runCancel(fa, (e) => {
+        if (running) return
+        running = true
+        cancel = r.unsafeRunWith(fa, (e) => {
           if (aborted) return
 
-          if (e._tag === "Success") {
+          if (isSuccess(e)) {
             if (e.value._tag === "Some") {
               sink(Signal.DATA, e.value.value)
             }
@@ -28,7 +31,7 @@ export const fromEffectOption =
       } else if (signal === Signal.END) {
         aborted = true
         if (cancel) {
-          r.runFiber(cancel)
+          cancel(none)(() => {})
         }
       }
     })

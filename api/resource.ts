@@ -1,6 +1,7 @@
 import * as CB from "strict-callbag-basics"
 import { EffectSource } from "../types"
-import { Option as O } from "@effect-ts/core"
+import * as O from "@fp-ts/data/Option"
+import { pipe } from "strict-callbag-basics"
 
 export const resource =
   <R, R1, E, E1, A, Acc>(
@@ -10,7 +11,7 @@ export const resource =
       index: number,
     ) => EffectSource<R1, E1, readonly [O.Option<Acc>, EffectSource<R, E, A>]>,
     cleanup?: (acc: Acc) => void,
-  ): EffectSource<R & R1, E | E1, A> =>
+  ): EffectSource<R | R1, E | E1, A> =>
   (r) =>
     CB.resource(
       initial,
@@ -21,10 +22,12 @@ export const resource =
           CB.map(
             ([acc, source]) =>
               [
-                O.fold_(
+                pipe(
                   acc,
-                  () => CB.NONE,
-                  (a) => a,
+                  O.match(
+                    () => CB.NONE,
+                    (a) => a,
+                  ),
                 ),
                 source(r),
               ] as const,

@@ -1,13 +1,13 @@
 // ets_tracing: off
 import { EffectSource } from "../types"
-import * as T from "@effect-ts/core/Effect"
+import * as T from "@effect/io/Effect"
 import { catchError_ } from "./catchError"
 import { fromEffect } from "./fromEffect"
 
 export const alt_ = <R, R1, E, E1, A, B>(
   self: EffectSource<R, E, A>,
   f: (e: E) => T.Effect<R1, E1, B>,
-): EffectSource<R & R1, E1, A | B> => catchError_(self, (e) => fromEffect(f(e)))
+): EffectSource<R | R1, E1, A | B> => catchError_(self, (e) => fromEffect(f(e)))
 
 /**
  * @ets_data_first alt_

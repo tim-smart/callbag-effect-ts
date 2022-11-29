@@ -1,5 +1,5 @@
 // ets_tracing: off
-import * as C from "@effect-ts/core/Effect/Cause"
+import * as C from "@effect/io/Cause"
 import * as CB from "strict-callbag-basics"
 import { EffectSource } from "../types"
 
@@ -24,7 +24,7 @@ export const mapError_ = <R, E, E1, A>(
   f: (e: E) => E1,
 ): EffectSource<R, E1, A> =>
   mapErrorCause_(self, (c) =>
-    c._tag === "Fail" ? C.fail(f(c.value)) : (c as C.Cause<E1>),
+    c._tag === "Fail" ? C.fail(f(c.error)) : (c as C.Cause<E1>),
   )
 
 /**
