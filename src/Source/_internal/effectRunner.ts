@@ -39,24 +39,23 @@ export const make = <R, E>(
     aborted = true
   }
 
-  const runEffect = (e: T.Effect<R, E, any>) => {
+  const runEffect = <A>(e: T.Effect<R, E, A>, cb?: (a: A) => void) => {
     if (aborted) return
 
     if (!currentCancel && !effects.length) {
-      runEffectImpl(e)
+      runEffectImpl(e, cb)
     } else if (waitingCount() < capacity - 1) {
       effects.push(e)
     }
   }
 
-  const runEffectImpl = (e: T.Effect<R, E, any>) => {
+  const runEffectImpl = <A>(e: T.Effect<R, E, A>, cb?: (a: A) => void) => {
     currentCancel = r.unsafeRunWith(e, (exit) => {
       currentCancel = undefined
 
-      if (
-        Exit.isFailure(exit) &&
-        !(exit.cause._tag === "Interrupt" && aborted)
-      ) {
+      if (Exit.isSuccess(exit)) {
+        cb?.(exit.value)
+      } else if (!(exit.cause._tag === "Interrupt" && aborted)) {
         onFail(exit.cause)
       }
 

@@ -3,7 +3,6 @@ import * as C from "@effect/io/Cause"
 import * as O from "@fp-ts/data/Option"
 import { EffectSource, Signal } from "../Source.js"
 import * as Runner from "./_internal/effectRunner.js"
-import { pipe } from "callbag-effect-ts/Source"
 
 export const repeatEffectOption =
   <R, E, A>(fa: T.Effect<R, O.Option<E>, A>): EffectSource<R, E, A> =>
@@ -28,12 +27,7 @@ export const repeatEffectOption =
 
     sink(Signal.START, (signal) => {
       if (signal === Signal.DATA) {
-        runner.runEffect(
-          pipe(
-            fa,
-            T.map((a) => sink(Signal.DATA, a)),
-          ),
-        )
+        runner.runEffect(fa, (a) => sink(Signal.DATA, a))
       } else if (signal === Signal.END) {
         runner.abort()
       }
