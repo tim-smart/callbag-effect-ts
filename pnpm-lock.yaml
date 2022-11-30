@@ -8,7 +8,7 @@ specifiers:
   prettier: ^2.8.0
   strict-callbag-basics: ^0.29.2
   ts-node: ^10.9.1
-  tsplus-gen: ^0.2.1
+  tsplus-gen: ^0.2.2
   typescript: ^4.9.3
 
 dependencies:
@@ -21,7 +21,7 @@ devDependencies:
   lerna: 4.0.0
   prettier: 2.8.0
   ts-node: 10.9.1_7cep2inysldxstbcrxlp3njwym
-  tsplus-gen: 0.2.1
+  tsplus-gen: 0.2.2
   typescript: 4.9.3
 
 packages:
@@ -4456,8 +4456,8 @@ packages:
     resolution: {integrity: sha512-Xni35NKzjgMrwevysHTCArtLDpPvye8zV/0E4EyYn43P7/7qvQwPh9BGkHewbMulVntbigmcT7rdX3BNo9wRJg==}
     dev: true
 
-  /tsplus-gen/0.2.1:
-    resolution: {integrity: sha512-0ew9d9XpVQsxTZb3u35j+l5/5rAnjHpbKYgZEVMgetECh9yoHhtNRgnHT/FofUvZlPAOPNRVJEC7qeu+ScYkAg==}
+  /tsplus-gen/0.2.2:
+    resolution: {integrity: sha512-lI7vvs5ZYaaywPX49ZSzeqhDac3VhVqFA6/LwWd9Ll7Nlu93x0n//X/kJ2n+kI3Y4qc08AQTdGFdf8wV/mepLw==}
     hasBin: true
     dependencies:
       '@effect/core': 0.0.16
@@ -4800,3 +4800,5 @@ packages:
   /zod/3.19.1:
     resolution: {integrity: sha512-LYjZsEDhCdYET9ikFu6dVPGp2YH9DegXjdJToSzD9rO6fy4qiRYFoyEYwps88OseJlPyl2NOe2iJuhEhL7IpEA==}
     dev: true
+
+publishDirectory: dist
