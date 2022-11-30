@@ -2,8 +2,12 @@
   "name": "callbag-effect-ts",
   "version": "1.0.0-alpha.0",
   "license": "MIT",
+  "publishConfig": {
+    "access": "public",
+    "directory": "dist"
+  },
   "scripts": {
-    "prepublishOnly": "pnpm run clean && tsc && pnpm run tsplus",
+    "prepublishOnly": "pnpm run clean && tsc && pnpm run tsplus && cp package.json dist/",
     "tsplus": "tsplus-gen tsplus-gen.config.json dist/tsplus.json",
     "clean": "rm -rf dist/"
   },
@@ -12,7 +16,7 @@
     "src/**/*"
   ],
   "exports": {
-    "./*": "./dist/*.js"
+    "./*": "./*.js"
   },
   "devDependencies": {
     "@types/node": "^17.0.45",
@@ -28,7 +32,7 @@
     "strict-callbag-basics": "^0.29.2"
   },
   "tsPlusTypes": [
-    "./dist/tsplus.json"
+    "./tsplus.json"
   ],
   "gitHead": "3db152a786ee45d44b771c9be72a23f55e39bd76"
 }
