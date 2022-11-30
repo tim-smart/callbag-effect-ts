@@ -1,34 +1,25 @@
 {
   "name": "callbag-effect-ts",
   "version": "0.17.0",
-  "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "prepublishOnly": "yarn clean && ttsc && yarn build:esm",
-    "build:esm": "ttsc -p ./tsconfig.mjs.json",
-    "clean": "git clean -fxd -e node_modules"
+    "prepublishOnly": "pnpm run clean && tsc && pnpm run tsplus",
+    "tsplus": "tsplus-gen tsplus-gen.config.json dist/tsplus.json",
+    "clean": "rm -rf dist/"
   },
   "files": [
-    "**/*.js",
-    "**/*.js.map",
-    "**/*.ts",
-    "!test"
+    "dist/**/*",
+    "src/**/*"
   ],
   "exports": {
-    ".": {
-      "require": "./index.js",
-      "import": "./esm/index.js"
-    },
-    "./Sink": {
-      "require": "./Sink/index.js",
-      "import": "./esm/Sink/index.js"
-    }
+    "./*": "./dist/*.js"
   },
   "devDependencies": {
     "@types/node": "^17.0.45",
     "lerna": "^4.0.0",
     "prettier": "^2.8.0",
     "ts-node": "^10.9.1",
+    "tsplus-gen": "^0.2.1",
     "typescript": "^4.9.3"
   },
   "dependencies": {
@@ -36,5 +27,8 @@
     "@fp-ts/data": "^0.0.16",
     "strict-callbag-basics": "^0.29.2"
   },
+  "tsPlusTypes": [
+    "./dist/tsplus.json"
+  ],
   "gitHead": "3db152a786ee45d44b771c9be72a23f55e39bd76"
 }

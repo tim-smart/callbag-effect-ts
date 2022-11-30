@@ -1,0 +1,22 @@
+{
+  "project": {
+    "packageName": "callbag-effect-ts",
+    "rootDir": "src",
+    "tsconfig": "tsconfig.json",
+    "exclude": ["**/internal/**", "**/operators/**", "**/Sink/**"],
+    "staticPrefixes": ["from"],
+    "getterNamespaces": ["callbag-effect-ts", "effect/io"]
+  },
+  "namespaces": [
+    {
+      "name": "callbag-effect-ts",
+      "static": {
+        "include": false
+      }
+    },
+    {
+      "name": "effect/core/io"
+    }
+  ],
+  "additionalExtensions": []
+}

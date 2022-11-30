@@ -8,6 +8,7 @@ specifiers:
   prettier: ^2.8.0
   strict-callbag-basics: ^0.29.2
   ts-node: ^10.9.1
+  tsplus-gen: ^0.2.1
   typescript: ^4.9.3
 
 dependencies:
@@ -20,6 +21,7 @@ devDependencies:
   lerna: 4.0.0
   prettier: 2.8.0
   ts-node: 10.9.1_7cep2inysldxstbcrxlp3njwym
+  tsplus-gen: 0.2.1
   typescript: 4.9.3
 
 packages:
@@ -52,6 +54,13 @@ packages:
       '@jridgewell/trace-mapping': 0.3.9
     dev: true
 
+  /@effect/core/0.0.16:
+    resolution: {integrity: sha512-JugbKcqo9CPdm4n7t/buO4nYxKwThafh0tXVvPgRC3RcwuOS1dzo3tIk6RVq1wYh8Kg4df5SwmdED2VvN4c/RA==}
+    dependencies:
+      '@effect/printer': 0.0.4
+      '@tsplus/stdlib': 0.2.8
+    dev: true
+
   /@effect/io/0.0.22:
     resolution: {integrity: sha512-29l+AGCgUVvQak4z8js5cX3LjB6A0nAHYaQODhJWfFKu2LNV0oQh4BDGYZYI1n0MdeN/L5QkRCJLeitrlW0bOQ==}
     dependencies:
@@ -59,6 +68,12 @@ packages:
       '@fp-ts/core': 0.0.8
       '@fp-ts/data': 0.0.16
     dev: false
+
+  /@effect/printer/0.0.4:
+    resolution: {integrity: sha512-oTn6U9GCg01E+kYwUBs4LM6k6hVq0pA7ZAYKdj972n2LjYeqg4+We6ZqoYWH2Pw5TDHOavtIEdYqt61uUxiZgg==}
+    dependencies:
+      '@tsplus/stdlib': 0.2.8
+    dev: true
 
   /@effect/printer/0.1.4:
     resolution: {integrity: sha512-xilOF8IbVG91de5huTvzO7PYZ2naF1LLux98Ci1ygwlVJUcyR52ZS28S+wODy3lbfxN+Q/DOxZODL3vhdjh0Cw==}
@@ -1011,6 +1026,10 @@ packages:
     resolution: {integrity: sha512-yOlFc+7UtL/89t2ZhjPvvB/DeAr3r+Dq58IgzsFkOAvVC6NMJXmCGjbptdXdR9qsX7pKcTL+s87FtYREi2dEEQ==}
     dev: true
 
+  /@tsplus/stdlib/0.2.8:
+    resolution: {integrity: sha512-UKAN06h9V/wUflSbOU1WwACisXEi4+PHwGqR+bwxqcClrEAA8KKTTLZ0ATMbqbVAVTudE0vW4pd5iY6vGvSFBw==}
+    dev: true
+
   /@types/minimatch/3.0.5:
     resolution: {integrity: sha512-Klz949h02Gz2uZCMGwDUSDS1YBlTdDDgbWHi+81l29tQALUtvz4rAYi5uoVhE5Lagoq6DeqAUlbrHvW/mXDgdQ==}
     dev: true
@@ -1231,6 +1250,12 @@ packages:
     dependencies:
       balanced-match: 1.0.2
       concat-map: 0.0.1
+    dev: true
+
+  /brace-expansion/2.0.1:
+    resolution: {integrity: sha512-XnAIvQ8eM+kC6aULx6wuQiwVsnzsi9d3WxzV3FpWTGA19F621kwdbsAcFKXgKUHZWsy+mY6iL1sHTxWEFCytDA==}
+    dependencies:
+      balanced-match: 1.0.2
     dev: true
 
   /braces/3.0.2:
@@ -2955,6 +2980,13 @@ packages:
       brace-expansion: 1.1.11
     dev: true
 
+  /minimatch/5.1.1:
+    resolution: {integrity: sha512-362NP+zlprccbEt/SkxKfRMHnNY85V74mVnpUpNyr3F35covl09Kec7/sEFLt3RA4oXmewtoaanoIf67SE5Y5g==}
+    engines: {node: '>=10'}
+    dependencies:
+      brace-expansion: 2.0.1
+    dev: true
+
   /minimist-options/4.1.0:
     resolution: {integrity: sha512-Q4r8ghd80yhO/0j1O3B2BjweX3fiHg9cdOwjJd2J76Q135c+NDxGCqdYKQ1SKBuFfgWbAUzBfvYjPUEeNgqN1A==}
     engines: {node: '>= 6'}
@@ -4424,6 +4456,17 @@ packages:
     resolution: {integrity: sha512-Xni35NKzjgMrwevysHTCArtLDpPvye8zV/0E4EyYn43P7/7qvQwPh9BGkHewbMulVntbigmcT7rdX3BNo9wRJg==}
     dev: true
 
+  /tsplus-gen/0.2.1:
+    resolution: {integrity: sha512-0ew9d9XpVQsxTZb3u35j+l5/5rAnjHpbKYgZEVMgetECh9yoHhtNRgnHT/FofUvZlPAOPNRVJEC7qeu+ScYkAg==}
+    hasBin: true
+    dependencies:
+      '@effect/core': 0.0.16
+      '@tsplus/stdlib': 0.2.8
+      minimatch: 5.1.1
+      typescript: 4.9.3
+      zod: 3.19.1
+    dev: true
+
   /tunnel-agent/0.6.0:
     resolution: {integrity: sha512-McnNiV1l8RYeY8tBgEpuodCC1mLUdbSN+CYBL7kJsJNInOP8UjDDEwdk6Mw60vdLLrr5NHKZhMAOSrR2NZuQ+w==}
     dependencies:
@@ -4752,4 +4795,8 @@ packages:
   /yn/3.1.1:
     resolution: {integrity: sha512-Ux4ygGWsu2c7isFWe8Yu1YluJmqVhxqK2cLXNQA5AcC3QfbGNpM7fu0Y8b/z16pXLnFxZYvWhd3fhBY9DLmC6Q==}
     engines: {node: '>=6'}
+    dev: true
+
+  /zod/3.19.1:
+    resolution: {integrity: sha512-LYjZsEDhCdYET9ikFu6dVPGp2YH9DegXjdJToSzD9rO6fy4qiRYFoyEYwps88OseJlPyl2NOe2iJuhEhL7IpEA==}
     dev: true

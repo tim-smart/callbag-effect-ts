@@ -2,7 +2,7 @@ import * as T from "@effect/io/Effect"
 import * as L from "@effect/io/Layer"
 import { Tag } from "@fp-ts/data/Context"
 import { pipe } from "strict-callbag-basics"
-import * as CB from "../"
+import * as CB from "../src/Source.js"
 
 // Some services
 type Error = { _tag: "Fail" }
@@ -36,7 +36,6 @@ const log = (...args: any[]) =>
 const program = pipe(
   T.acquireRelease(pipe(T.serviceWith(Resource)((r) => r)), (r) =>
     T.sync(() => {
-      console.error("CLOSE")
       r.close()
     }),
   ),
