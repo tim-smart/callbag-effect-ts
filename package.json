@@ -1,6 +1,6 @@
 {
   "name": "callbag-effect-ts",
-  "version": "0.17.0",
+  "version": "1.0.0-alpha.0",
   "license": "MIT",
   "scripts": {
     "prepublishOnly": "pnpm run clean && tsc && pnpm run tsplus",
