@@ -11,10 +11,6 @@
     "tsplus": "tsplus-gen tsplus-gen.config.json dist/tsplus.json",
     "clean": "rm -rf dist/"
   },
-  "files": [
-    "dist/**/*",
-    "src/**/*"
-  ],
   "exports": {
     "./*": "./*.js"
   },
