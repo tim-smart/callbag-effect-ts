@@ -3,15 +3,21 @@
     "packageName": "callbag-effect-ts",
     "rootDir": "src",
     "tsconfig": "tsconfig.json",
-    "exclude": ["**/internal/**"],
+    "exclude": ["**/internal/**", "**/_internal/**"],
     "staticPrefixes": ["from"],
     "fluentNamespaces": ["callbag-effect-ts", "effect/io"]
   },
   "namespaces": [
     {
       "name": "callbag-effect-ts",
+      "type": {
+        "include": true,
+        "includeCompanion": true,
+        "companionSuffix": ".Ops"
+      },
       "static": {
-        "include": false
+        "include": true,
+        "staticSuffix": ".Ops"
       }
     },
     {
