@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-alpha.8](https://github.com/tim-smart/callbag-effect-ts/compare/callbag-effect-ts@1.0.0-alpha.7...callbag-effect-ts@1.0.0-alpha.8) (2022-12-01)
+
+
+### Features
+
+* add static tsplus annotations ([f41f1c3](https://github.com/tim-smart/callbag-effect-ts/commit/f41f1c3dd010365f1a86d9ce9e79868069540aab))
+
+
+
+
+
 # [1.0.0-alpha.7](https://github.com/tim-smart/callbag-effect-ts/compare/callbag-effect-ts@1.0.0-alpha.6...callbag-effect-ts@1.0.0-alpha.7) (2022-12-01)
 
 **Note:** Version bump only for package callbag-effect-ts
