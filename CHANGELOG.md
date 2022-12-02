@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-alpha.9](https://github.com/tim-smart/callbag-effect-ts/compare/callbag-effect-ts@1.0.0-alpha.8...callbag-effect-ts@1.0.0-alpha.9) (2022-12-02)
+
+
+### Features
+
+* add scan ([7f0ee58](https://github.com/tim-smart/callbag-effect-ts/commit/7f0ee58298530ccbbc5456fc4bf55c1274eb871c))
+
+
+
+
+
 # [1.0.0-alpha.8](https://github.com/tim-smart/callbag-effect-ts/compare/callbag-effect-ts@1.0.0-alpha.7...callbag-effect-ts@1.0.0-alpha.8) (2022-12-01)
 
 
