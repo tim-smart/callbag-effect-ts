@@ -2,6 +2,7 @@
   "name": "callbag-effect-ts",
   "version": "1.0.0-alpha.10",
   "license": "MIT",
+  "type": "module",
   "publishConfig": {
     "access": "public",
     "directory": "dist"
@@ -29,7 +30,7 @@
     "@fp-ts/data": "*"
   },
   "dependencies": {
-    "strict-callbag-basics": "^0.29.2"
+    "strict-callbag-basics": "^1.0.1"
   },
   "tsPlusTypes": [
     "./tsplus.json"

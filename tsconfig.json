@@ -8,11 +8,11 @@
     "sourceMap": true,
     "declaration": true,
     "allowJs": false,
-    "moduleResolution": "Node",
+    "moduleResolution": "NodeNext",
     "skipLibCheck": true,
-    "module": "CommonJS",
+    "module": "ES6",
     "paths": {
-      "callbag-effect-ts/*": ["./src/*"]
+      "callbag-effect-ts/*": ["./src/*.js"]
     }
   },
 
