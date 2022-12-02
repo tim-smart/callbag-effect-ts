@@ -1,6 +1,6 @@
 {
   "name": "callbag-effect-ts",
-  "version": "1.0.0-alpha.9",
+  "version": "1.0.0-alpha.10",
   "license": "MIT",
   "publishConfig": {
     "access": "public",
@@ -15,9 +15,9 @@
     "./*": "./*.js"
   },
   "devDependencies": {
-    "@types/node": "^17.0.45",
     "@effect/io": "^0.0.28",
     "@fp-ts/data": "^0.0.16",
+    "@types/node": "^17.0.45",
     "lerna": "^4.0.0",
     "prettier": "^2.8.0",
     "ts-node": "^10.9.1",
