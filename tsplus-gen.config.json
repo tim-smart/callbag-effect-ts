@@ -21,7 +21,7 @@
       }
     },
     {
-      "name": "effect/core/io"
+      "name": "effect/io"
     }
   ],
   "additionalExtensions": []
