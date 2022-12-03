@@ -34,13 +34,13 @@ export const run = <R, R1, EI, EO, A>(
 
               if (err) {
                 aborted = true
-                cb(T.die(err))
+                cb(T.failCause(err))
               }
             })
           } else if (t === Signal.DATA) {
             sinkWithEnv(Signal.DATA, d)
           } else if (t === Signal.END) {
-            cb(d ? T.die(d) : T.unit())
+            cb(d ? T.failCause(d) : T.unit())
           }
         })
 
