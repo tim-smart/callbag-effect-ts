@@ -21,6 +21,9 @@ export const async =
   (r) =>
     CB.buffer_(asyncPush(register)(r), bufferSize)
 
+/**
+ * @tsplus static callbag-effect-ts/Source.EffectSource.Ops asyncEmitterPush
+ */
 export const asyncEmitterPush = <E, A>(): readonly [
   Emitter<E, A>,
   EffectSource<never, E, A>,
@@ -29,6 +32,9 @@ export const asyncEmitterPush = <E, A>(): readonly [
   return [emitter(sink), () => source]
 }
 
+/**
+ * @tsplus static callbag-effect-ts/Source.EffectSource.Ops asyncEmitter
+ */
 export const asyncEmitter = <E, A>(
   bufferSize = 16,
 ): readonly [Emitter<E, A>, EffectSource<never, E, A>] => {
@@ -36,6 +42,9 @@ export const asyncEmitter = <E, A>(
   return [emitter(sink), () => CB.buffer_(source, bufferSize)]
 }
 
+/**
+ * @tsplus static callbag-effect-ts/Source.EffectSource.Ops asyncSink
+ */
 export const asyncSink = <E, A>(): readonly [
   EffectSink<never, E, never, A>,
   EffectSource<never, E, A>,

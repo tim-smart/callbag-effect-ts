@@ -1,6 +1,6 @@
 import * as T from "@effect/io/Effect"
 import * as SC from "@effect/io/Schedule"
-import { pipe } from "callbag-effect-ts/Source"
+import { pipe } from "strict-callbag-basics"
 import { repeatEffectOption } from "./repeatEffectOption.js"
 import { unwrap } from "./unwrap.js"
 

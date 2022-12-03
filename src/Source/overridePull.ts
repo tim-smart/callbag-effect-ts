@@ -1,6 +1,9 @@
 import { EffectSource } from "../Source.js"
 import * as CB from "strict-callbag-basics"
 
+/**
+ * @tsplus static callbag-effect-ts/Source.EffectSource.Ops overridePull
+ */
 export const overridePull = <R, E, A>(
   self: EffectSource<R, E, A>,
   initialPulls = 1,
