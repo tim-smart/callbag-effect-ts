@@ -30,7 +30,7 @@
     "@fp-ts/data": "*"
   },
   "dependencies": {
-    "strict-callbag-basics": "^1.0.1"
+    "strict-callbag-basics": "^1.0.2"
   },
   "tsPlusTypes": [
     "./tsplus.json"
