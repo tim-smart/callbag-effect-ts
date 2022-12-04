@@ -6,13 +6,13 @@ specifiers:
   '@types/node': ^17.0.45
   lerna: ^4.0.0
   prettier: ^2.8.0
-  strict-callbag-basics: ^1.0.1
+  strict-callbag-basics: ^1.0.2
   ts-node: ^10.9.1
-  tsplus-gen: ^0.2.8
+  tsplus-gen: ^0.2.10
   typescript: ^4.9.3
 
 dependencies:
-  strict-callbag-basics: 1.0.1
+  strict-callbag-basics: 1.0.2
 
 devDependencies:
   '@effect/io': 0.0.28
@@ -21,7 +21,7 @@ devDependencies:
   lerna: 4.0.0
   prettier: 2.8.0
   ts-node: 10.9.1_7cep2inysldxstbcrxlp3njwym
-  tsplus-gen: 0.2.8
+  tsplus-gen: 0.2.10
   typescript: 4.9.3
 
 packages:
@@ -4178,8 +4178,8 @@ packages:
       minipass: 3.3.6
     dev: true
 
-  /strict-callbag-basics/1.0.1:
-    resolution: {integrity: sha512-nauKvLf9gR9YZSYKiu8V7iJz1ysw+vG047HO27aonKgigGh4ecWZfV5S5/rQ0GPOP0bELB2442of5SBl3TmrwQ==}
+  /strict-callbag-basics/1.0.2:
+    resolution: {integrity: sha512-bJKwgmG6j8+8pTXJj0mVcuaalZsvuQ9EPvXVyzBjqwciHl0NBW2tJSqt/9xhJKYfzgbQbq/3aKbrG1FNvSh4Cg==}
     dependencies:
       callbag-buffer: 1.0.0
       callbag-buffer-time: 1.0.0
@@ -4465,8 +4465,8 @@ packages:
     resolution: {integrity: sha512-Xni35NKzjgMrwevysHTCArtLDpPvye8zV/0E4EyYn43P7/7qvQwPh9BGkHewbMulVntbigmcT7rdX3BNo9wRJg==}
     dev: true
 
-  /tsplus-gen/0.2.8:
-    resolution: {integrity: sha512-HDaMymO9Ut8jGk61Jeef13cINY8lFdEMQE1AQetmU7ZBc1AfuTOPBYYzKb3xMxexmmQ4OoxkGLkiMiNGDz6xjw==}
+  /tsplus-gen/0.2.10:
+    resolution: {integrity: sha512-ja5KGu517SillMI9aWPDK8EQHiUg0fXCxUEUXjn42a3LamNDbXBcPDItCJtKHhiaVra5VPiq0gc4+ZceylyiSg==}
     hasBin: true
     dependencies:
       '@effect/core': 0.0.16
