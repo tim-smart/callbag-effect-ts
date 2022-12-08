@@ -5,7 +5,7 @@
     "tsconfig": "tsconfig.json",
     "exclude": ["**/internal/**", "**/_internal/**"],
     "staticPrefixes": ["from"],
-    "fluentNamespaces": ["callbag-effect-ts", "effect/io"]
+    "fluentNamespaces": ["callbag-effect-ts", "effect/io/Effect"]
   },
   "namespaces": [
     {
@@ -21,7 +21,7 @@
       }
     },
     {
-      "name": "effect/io"
+      "name": "effect/io/Effect"
     }
   ],
   "additionalExtensions": []
