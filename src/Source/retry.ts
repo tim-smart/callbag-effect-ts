@@ -1,6 +1,6 @@
 import * as T from "@effect/io/Effect"
 import * as SC from "@effect/io/Schedule"
-import { pipe } from "callbag-effect-ts/Source"
+import { fail, pipe } from "callbag-effect-ts/Source"
 import { EffectSource } from "../Source.js"
 import { catchError } from "./catchError.js"
 import { tap } from "./tap.js"
@@ -18,7 +18,7 @@ export const retry =
             pipe(
               driver.next(e),
               T.fold(
-                () => loop,
+                () => fail(e),
                 () =>
                   pipe(
                     loop,

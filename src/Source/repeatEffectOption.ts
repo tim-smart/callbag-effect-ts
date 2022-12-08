@@ -1,8 +1,10 @@
 import * as T from "@effect/io/Effect"
 import * as C from "@effect/io/Cause"
 import * as O from "@fp-ts/data/Option"
-import { EffectSource, Signal } from "../Source.js"
+import { EffectSource, pipe, Signal } from "../Source.js"
 import * as Runner from "./_internal/effectRunner.js"
+import * as Either from "@fp-ts/data/Either"
+import { identity } from "@fp-ts/data/Function"
 
 export const repeatEffectOption =
   <R, E, A>(fa: T.Effect<R, O.Option<E>, A>): EffectSource<R, E, A> =>
@@ -13,14 +15,15 @@ export const repeatEffectOption =
       (cause) => {
         runner.abort()
 
-        if (cause._tag == "Fail") {
-          sink(
-            Signal.END,
-            cause.error._tag === "Some" ? C.fail(cause.error.value) : undefined,
-          )
-        } else {
-          sink(Signal.END, cause as any)
-        }
+        const newCause = pipe(
+          C.failureOrCause(cause),
+          Either.match(
+            (e) => pipe(e, O.map(C.fail), O.getOrUndefined),
+            identity,
+          ),
+        )
+
+        sink(Signal.END, newCause)
       },
       1,
     )

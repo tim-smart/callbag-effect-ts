@@ -55,7 +55,7 @@ export const make = <R, E>(
 
       if (Exit.isSuccess(exit)) {
         cb?.(exit.value)
-      } else if (!(exit.cause._tag === "Interrupt" && aborted)) {
+      } else if (!(Cause.isInterrupted(exit.cause) && aborted)) {
         onFail(exit.cause)
       }
 
