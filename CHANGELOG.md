@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-alpha.20](https://github.com/tim-smart/callbag-effect-ts/compare/callbag-effect-ts@1.0.0-alpha.19...callbag-effect-ts@1.0.0-alpha.20) (2022-12-08)
+
+
+### Bug Fixes
+
+* handle of causes ([36a3eaa](https://github.com/tim-smart/callbag-effect-ts/commit/36a3eaa02d19beba5b7c7420f4b6c3b1f835b701))
+
+
+
+
+
 # [1.0.0-alpha.19](https://github.com/tim-smart/callbag-effect-ts/compare/callbag-effect-ts@1.0.0-alpha.18...callbag-effect-ts@1.0.0-alpha.19) (2022-12-08)
 
 **Note:** Version bump only for package callbag-effect-ts
