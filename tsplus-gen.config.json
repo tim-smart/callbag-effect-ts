@@ -5,7 +5,11 @@
     "tsconfig": "tsconfig.json",
     "exclude": ["**/internal/**", "**/_internal/**"],
     "staticPrefixes": ["from"],
-    "fluentNamespaces": ["callbag-effect-ts", "effect/io/Effect"]
+    "fluentNamespaces": ["callbag-effect-ts", "effect/io/Effect"],
+    "namespaceAliases": {
+      "callbag-effect-ts/Source/async": "callbag-effect-ts/Source.EffectSource",
+      "callbag-effect-ts/Source/run": "callbag-effect-ts/Source.EffectSource"
+    }
   },
   "namespaces": [
     {
@@ -24,5 +28,7 @@
       "name": "effect/io/Effect"
     }
   ],
-  "additionalExtensions": []
+  "additionalExtensions": [
+    ["callbag-effect-ts/Source.EffectSource#run", "fluent", "run"]
+  ]
 }
